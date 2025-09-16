@@ -18,7 +18,6 @@
                     <?php endif; ?>
                     
                     <form method="POST" action="crear-clase">
-                        <!-- Información básica -->
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="mb-3">
