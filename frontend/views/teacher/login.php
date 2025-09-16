@@ -1,0 +1,44 @@
+<?php require_once '../frontend/templates/header.php'; ?>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Iniciar Sesión - Profesor</h2>
+                </div>
+                <div class="card-body">
+                    <?php if (!empty($errors)): ?>
+                        <div class="alert alert-danger">
+                            <?php foreach ($errors as $error): ?>
+                                <p class="mb-0"><?php echo $error; ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <form method="POST" action="login">
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula Profesional</label>
+                            <input type="text" class="form-control" id="cedula" name="cedula" 
+                                   value="<?php echo isset($_POST['cedula']) ? htmlspecialchars($_POST['cedula']) : ''; ?>" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <p>¿No tienes cuenta? <a href="registro">Regístrate como profesor</a></p>
+                        <p>¿Eres estudiante? <a href="../login">Inicia sesión aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php require_once '../frontend/templates/footer.php'; ?>
