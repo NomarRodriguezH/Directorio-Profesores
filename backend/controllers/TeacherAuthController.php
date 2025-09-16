@@ -68,12 +68,6 @@ class TeacherAuthController {
         require_once '../frontend/views/teacher/login.php';
     }
     
-    public function logout() {
-        session_destroy();
-        header('Location: index.php');
-        exit();
-    }
-    
     private function validateTeacherData($postData, $filesData) {
         $errors = [];
         $data = [];
