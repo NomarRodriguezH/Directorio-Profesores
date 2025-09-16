@@ -32,7 +32,7 @@
                     </form>
                     
                     <div class="text-center mt-3">
-                        <p>¿No tienes cuenta? <a href="register_student.php">Regístrate aquí</a></p>
+                        <p>¿No tienes cuenta? <a href="registro-estudiante.php">Regístrate aquí</a></p>
                     </div>
                 </div>
             </div>

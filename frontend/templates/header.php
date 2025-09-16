@@ -8,7 +8,7 @@ $userType = $isLoggedIn ? $_SESSION['user_type'] : '';
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo $pagina ?></title>
+	<title><?php echo $page_title ?></title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
