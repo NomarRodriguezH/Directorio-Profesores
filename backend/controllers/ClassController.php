@@ -1,7 +1,7 @@
 <?php
 class ClassController {
     public function create() {
-        $pagina ="Crear Clase";
+        $page_title ="Crear Clase";
         if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'teacher') {
             $_SESSION['error_message'] = "Debes ser profesor para crear clases";
             header('Location: ../login.php');
@@ -112,8 +112,8 @@ class ClassController {
     private function validateClassData($postData) {
         $errors = [];
         $data = [];
-
-        $data [$correo]=[$_SESSION['teacher_email']];
+        
+        $data['idProfesor']=$_SESSION['user_id'];
         
         $required = ['materia', 'descripcion', 'nivel', 'modalidad'];
         foreach ($required as $field) {
@@ -133,7 +133,7 @@ class ClassController {
         foreach ($dias as $dia) {
             $hi = trim($postData[$dia . 'HI']);
             $hf = trim($postData[$dia . 'HF']);
-            
+
             if (!empty($hi) && !empty($hf)) {
                 $hasSchedule = true;
                 
@@ -147,6 +147,7 @@ class ClassController {
                 
                 $data[$dia . 'HI'] = $hi;
                 $data[$dia . 'HF'] = $hf;
+                print($data[$dia.'HI'].$data[$dia.'HF']);
             } else {
                 $data[$dia . 'HI'] = null;
                 $data[$dia . 'HF'] = null;

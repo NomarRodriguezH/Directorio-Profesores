@@ -1,5 +1,4 @@
 <?php require_once '../frontend/templates/header.php'; ?>
-<?php echo "IDDDD ".$_SESSION['teacher_email']; ?>
 
 <div class="container mt-4">
     <div class="row justify-content-center">

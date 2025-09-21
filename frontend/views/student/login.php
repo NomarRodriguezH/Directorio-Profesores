@@ -33,6 +33,7 @@
                     
                     <div class="text-center mt-3">
                         <p>¿No tienes cuenta? <a href="registro-estudiante.php">Regístrate aquí</a></p>
+                        <p>¿Eres profesor? <a href="profesores/login.php">Inicia sesión aquí</a></p>
                     </div>
                 </div>
             </div>

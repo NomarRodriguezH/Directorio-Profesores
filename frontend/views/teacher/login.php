@@ -18,7 +18,7 @@
                     
                     <form method="POST" action="login">
                         <div class="mb-3">
-                            <label for="cedula" class="form-label">Cédula Profesional</label>
+                            <label for="cedula" class="form-label">Correo</label>
                             <input type="text" class="form-control" id="cedula" name="cedula" 
                                    value="<?php echo isset($_POST['cedula']) ? htmlspecialchars($_POST['cedula']) : ''; ?>" required>
                         </div>

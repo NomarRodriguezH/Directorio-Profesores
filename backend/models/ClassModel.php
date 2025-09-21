@@ -34,6 +34,7 @@ class ClassModel {
     }
     
     public function createClass($data) {
+        print('Holaaaaaa'.$data['IdProfesor']);
         $query = "INSERT INTO " . $this->table_name . " 
                   (Materia, IdProfesor_FK, Descripcion, Nivel, Modalidad, 
                    LuHI, LuHF, MaHI, MaHF, MiHI, MiHF, JuHI, JuHF, 
@@ -46,7 +47,7 @@ class ClassModel {
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(':materia', $data['materia'], PDO::PARAM_STR);
-        $stmt->bindParam(':cedula', $data['cedula'], PDO::PARAM_STR);
+        $stmt->bindParam(':cedula', $data['idProfesor'], PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
         $stmt->bindParam(':nivel', $data['nivel'], PDO::PARAM_STR);
         $stmt->bindParam(':modalidad', $data['modalidad'], PDO::PARAM_STR);

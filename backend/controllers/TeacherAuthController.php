@@ -43,7 +43,7 @@ class TeacherAuthController {
             $password = $_POST['password'];
             
             if (empty($cedula) || empty($password)) {
-                $errors[] = "Cédula y contraseña son obligatorios";
+                $errors[] = "Correo y contraseña son obligatorios";
             } else {
                 require_once __DIR__ . '/../models/TeacherModel.php';
                 $model = new TeacherModel();
@@ -51,9 +51,9 @@ class TeacherAuthController {
                 $teacher = $model->getTeacherByCedula($cedula);
                 
                 if ($teacher && password_verify($password, $teacher['pass'])) {
-                    $_SESSION['IDT'] = $teacher['IdProfesor'];
+                    $_SESSION['user_id'] = $teacher['IdProfesor'];
                     $_SESSION['teacher_email'] = $teacher['Correo'];
-                    $_SESSION['teacher_name'] = $teacher['Nombre'] . ' ' . $teacher['ApPaterno'];
+                    $_SESSION['user_name'] = $teacher['Nombre'] . ' ' . $teacher['ApPaterno'];
                     $_SESSION['user_type'] = 'teacher';
                     
                     header('Location: panel.php');
