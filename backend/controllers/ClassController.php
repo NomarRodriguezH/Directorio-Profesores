@@ -147,7 +147,7 @@ class ClassController {
                 
                 $data[$dia . 'HI'] = $hi;
                 $data[$dia . 'HF'] = $hf;
-                print($data[$dia.'HI'].$data[$dia.'HF']);
+
             } else {
                 $data[$dia . 'HI'] = null;
                 $data[$dia . 'HF'] = null;

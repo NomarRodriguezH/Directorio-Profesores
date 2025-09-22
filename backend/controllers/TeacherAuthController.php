@@ -261,5 +261,19 @@ class TeacherAuthController {
         
         return true;
     }
+
+    public function showDatosProfesor() {
+        $page_title = 'Datos personales';
+        require_once __DIR__ . '/../models/TeacherModel.php';
+        require_once __DIR__ . '/../models/ClassModel.php';
+        $classModel = new ClassModel();
+        $teacherModel = new TeacherModel();
+
+        $teacherData = $teacherModel->getTeacherByCedula($_SESSION['teacher_email']);
+        $clases = $classModel->getClassesByTeacher($_SESSION['user_id']);
+        $horarios = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
+
+        require_once '../frontend/views/teacher/panel.php';
+    }
 }
 ?> 

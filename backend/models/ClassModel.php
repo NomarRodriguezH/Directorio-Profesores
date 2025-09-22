@@ -34,7 +34,6 @@ class ClassModel {
     }
     
     public function createClass($data) {
-        print('Holaaaaaa'.$data['IdProfesor']);
         $query = "INSERT INTO " . $this->table_name . " 
                   (Materia, IdProfesor_FK, Descripcion, Nivel, Modalidad, 
                    LuHI, LuHF, MaHI, MaHF, MiHI, MiHF, JuHI, JuHF, 
