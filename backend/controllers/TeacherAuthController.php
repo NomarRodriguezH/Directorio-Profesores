@@ -275,5 +275,11 @@ class TeacherAuthController {
 
         require_once '../frontend/views/teacher/panel.php';
     }
+
+    public function edit() { //Falta completar
+        $page_title = 'Editar mis datos';
+        require_once __DIR__ . '/../models/TeacherModel.php';
+        $teacherData = $teacherModel->getTeacherByCedula($_SESSION['teacher_email']);
+    }
 }
 ?> 

@@ -104,7 +104,7 @@ class ClassModel {
     
     public function isClassOwner($idClase, $cedulaProfesor) {
         $query = "SELECT IdClase FROM " . $this->table_name . " 
-                  WHERE IdClase = :idClase AND CedulaProfesional_FK = :cedula AND Activo = 1";
+                  WHERE IdClase = :idClase AND IdProfesor_FK = :cedula AND Activo = 1";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
