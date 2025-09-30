@@ -1,44 +1,152 @@
 <?php require_once 'frontend/templates/header.php'; ?>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center">Iniciar Sesión</h2>
-                </div>
-                <div class="card-body">
-                    <?php if (!empty($errors)): ?>
-                        <div class="alert alert-danger">
-                            <?php foreach ($errors as $error): ?>
-                                <p class="mb-0"><?php echo $error; ?></p>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <form method="POST" action="login">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" 
-                                   value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                    </form>
-                    
-                    <div class="text-center mt-3">
-                        <p>¿No tienes cuenta? <a href="registro-estudiante.php">Regístrate aquí</a></p>
-                        <p>¿Eres profesor? <a href="profesores/login.php">Inicia sesión aquí</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio de Sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Jersey 20', Bodoni MT, Arial, sans-serif;
+      background-image: url("https://preview.redd.it/gengar-and-the-gang-animated-desktop-wallpaper-version-v0-gpir30a1cqud1.gif?format=png8&s=be078482c9ad9e1e011efdb8b24fd3add0a6d2b3");
+      background-size: cover;      
+      background-position: center; 
+      background-repeat: repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #151522; 
+      color: white;
+      text-align: center;
+      padding: 30px;
+      font-size: 50px;
+      font-weight: bold;
+    }
+
+    .titulo {
+      margin-top: 60px;
+      margin-bottom: 10px;
+      font-family: 'Jersey 20', Bodoni MT, Arial, sans-serif;
+      font-size: 40px;
+      color: white;
+      text-align: center;
+    }
+
+    .caja-sesion {
+      background-color: white;
+      margin-top: 20px;
+      margin-bottom: 185px;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      text-align: center;
+      font-family: 'Jersey 20', Bodoni MT, Arial, sans-serif;
+    }
+
+    .caja-sesion input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .caja-sesion button {
+      font-family: 'Jersey 20', Bodoni MT, Arial, sans-serif;
+      background-color: #9e78d4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .caja-sesion button:hover {
+      background-color: #5d4b95;
+    }
+
+    .caja-sesion a {
+      text-decoration: none;
+      color: #4B3894;
+      font-size: 14px;
+    }
+
+    .alert {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .olvidada {
+      text-decoration: none; 
+      color: #4B3894;
+      font-size: 14px;
+    }
+
+    .olvidada:hover {
+      color: black;
+      text-decoration: underline;
+    }
+
+
+
+    .alert-danger { background-color: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <header>
+    Profesores Gengar
+  </header>
+
+  <div class="titulo">
+    Inicia Sesión - Estudiante
+  </div>
+  
+  <div class="caja-sesion">
+    <?php if (!empty($errors)): ?>
+      <div class="error">
+        <?php foreach ($errors as $error): ?>
+          <p><?php echo $error; ?></p>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+    
+    <form method="POST" action="login">
+      <input type="email" id="email" name="email" 
+             placeholder="Correo electrónico" 
+             value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" 
+             required>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Continuar</button>
+    </form>
+
+
+<div class="text-center mt-3">
+        <p>¿No tienes cuenta? <a class="olvidada" href="registro-estudiante">Regístrate como estudiante</a></p>
+        
     </div>
-</div>
+
+
+  </div>
+  
+  <div id="espacio"></div>
+
+</body>
+</html>
+
+<?php require_once 'frontend/templates/footer.php'; ?>
 
 <?php require_once 'frontend/templates/footer.php'; ?>
