@@ -120,6 +120,11 @@ class UserController {
 
     
     public function login() {
+        if (isset($_SESSION['user_id']) || $_SESSION['user_type'] == 'student') {
+            //header('Location: panel.php');
+            echo "ya iniciaste sesión";
+            exit();
+        }
         $errors = [];
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -213,5 +218,24 @@ class UserController {
         $page_title = "Mi Perfil";
         require_once 'frontend/views/student/profile.php';
     }
-}
+
+
+
+    public function dashboard() {
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'student') {
+            header('Location: login.php');
+            exit();
+        }
+        
+       require_once __DIR__ . '/../models/UserModel.php';
+        $model = new UserModel();
+        $user = $model->getUserByEmail($_SESSION['user_email']);
+        
+        
+        $page_title = "Mi Perfil";
+        require_once 'frontend/views/student/dashboard.php';
+    }
+
+
+}//FIN CLASE
 ?>

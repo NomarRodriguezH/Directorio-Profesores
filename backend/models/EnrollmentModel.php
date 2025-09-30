@@ -35,13 +35,15 @@ class EnrollmentModel {
         
         return $stmt->execute();
     }
-    
+
     public function getStudentEnrollments($correoEstudiante) {
-        $query = "SELECT i.*, c.Materia, p.Nombre as ProfesorNombre, p.ApPaterno as ProfesorApellido
-                  FROM " . $this->table_name . " i
+        $query = "SELECT i.*, c.Materia, c.Descripcion as DescripcionClase, 
+                         p.Nombre as ProfesorNombre, p.ApPaterno as ProfesorApellido,
+                         p.IdProfesor, p.Especialidad, p.CalificacionPromedio
+                  FROM Inscritos i
                   INNER JOIN Clases c ON i.IdClase_FK = c.IdClase
-                  INNER JOIN Profesores p ON i.CedulaProfesor_FK = p.CedulaProfesional
-                  WHERE i.Correo_FK = :correo
+                  INNER JOIN Profesores p ON i.idProfesor_FK = p.IdProfesor
+                  WHERE i.idEstudiante_FK = :correo
                   ORDER BY i.FechaIngreso DESC";
         
         $stmt = $this->conn->prepare($query);
@@ -50,5 +52,30 @@ class EnrollmentModel {
         
         return $stmt->fetchAll();
     }
-}
+    
+    public function isStudentEnrolled($correoEstudiante, $idClase) {
+        $query = "SELECT * FROM Inscritos 
+                  WHERE idEstudiante_FK = :correo AND IdClase_FK = :idClase AND Estado = 'activo'";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':correo', $correoEstudiante, PDO::PARAM_STR);
+        $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
+    
+    public function cancelEnrollment($correoEstudiante, $idClase) {
+        $query = "UPDATE Inscritos SET Estado = 'cancelado' 
+                  WHERE idEstudiante_FK = :correo AND IdClase_FK = :idClase";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':correo', $correoEstudiante, PDO::PARAM_STR);
+        $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    }
+
+
+}//Fin de clase
 ?>

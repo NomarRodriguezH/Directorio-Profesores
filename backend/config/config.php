@@ -21,7 +21,7 @@ function sanitize($data) {
     return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
 }
 //subida de archivos
-define('MAX_FILE_SIZE', 2 * 1024 * 1024); // 2MB
+define('MAX_FILE_SIZE', 4 * 1024 * 1024); // 2MB
 define('ALLOWED_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']);
 define('UPLOAD_DIR', '../frontend/assets/images/teachers/');
 

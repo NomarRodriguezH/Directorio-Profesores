@@ -1,24 +1,24 @@
 <?php
 class ClassModel {
     private $conn;
-    private $table_name = "Clases";
+    private $table_name = "clases";
     
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
     
-    public function getClassesByTeacher($id) {
-        $query = "SELECT * FROM " . $this->table_name . " 
-                  WHERE idProfesor_FK = :id AND Activo = 1 
-                  ORDER BY Materia";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-        $stmt->execute();
-        
-        return $stmt->fetchAll();
-    }
+   public function getClassesByTeacher($idProfesor) {
+    $query = "SELECT * FROM " . $this->table_name . " 
+              WHERE IdProfesor_FK = :idProfesor AND Activo = 1
+              ORDER BY Materia";
+    
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':idProfesor', $idProfesor, PDO::PARAM_STR);
+    $stmt->execute();
+    
+    return $stmt->fetchAll();
+}
     
     public function getClassById($id) {
         $query = "SELECT c.*, p.Nombre, p.ApPaterno, p.ApMaterno 
@@ -72,7 +72,6 @@ class ClassModel {
         
         $stmt = $this->conn->prepare($query);
         
-        // Vincular parámetros básicos
         $stmt->bindParam(':materia', $data['materia'], PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
         $stmt->bindParam(':nivel', $data['nivel'], PDO::PARAM_STR);
@@ -90,7 +89,6 @@ class ClassModel {
         return $stmt->execute();
     }
     
-    // Eliminar clase (soft delete)
     public function deleteClass($idClase, $cedulaProfesor) {
         $query = "UPDATE " . $this->table_name . " SET Activo = 0 
                   WHERE IdClase = :idClase AND CedulaProfesional_FK = :cedula";
@@ -102,17 +100,18 @@ class ClassModel {
         return $stmt->execute();
     }
     
-    public function isClassOwner($idClase, $cedulaProfesor) {
-        $query = "SELECT IdClase FROM " . $this->table_name . " 
-                  WHERE IdClase = :idClase AND IdProfesor_FK = :cedula AND Activo = 1";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
-        $stmt->bindParam(':cedula', $cedulaProfesor, PDO::PARAM_STR);
-        $stmt->execute();
-        
-        return $stmt->rowCount() > 0;
-    }
+   public function isClassOwner($idClase, $idProfesor) {
+    // CORREGIR: Usar IdProfesor_FK
+    $query = "SELECT IdClase FROM " . $this->table_name . " 
+              WHERE IdClase = :idClase AND IdProfesor_FK = :idProfesor AND Activo = 1";
+    
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
+    $stmt->bindParam(':idProfesor', $idProfesor, PDO::PARAM_STR);
+    $stmt->execute();
+    
+    return $stmt->rowCount() > 0;
+}
     
     public function getClassEnrollments($idClase, $cedulaProfesor) {
         $query = "SELECT u.*, i.FechaIngreso, i.Estado, i.CalificacionPersonal, i.Comentario

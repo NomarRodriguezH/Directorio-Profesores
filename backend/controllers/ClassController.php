@@ -2,10 +2,10 @@
 class ClassController {
     public function create() {
         $page_title ="Crear Clase";
-        if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'teacher') {
+        if (!isset($_SESSION['teacher_email']) || $_SESSION['user_type'] !== 'teacher') {
             $_SESSION['error_message'] = "Debes ser profesor para crear clases";
-            header('Location: ../login.php');
-            exit();
+            echo $_SESSION['error_message'];    
+                exit();
         }
         
         $errors = [];

@@ -12,4 +12,12 @@
 
     # Excluir assets y otros directorios
     RewriteRule ^(assets|includes|src|paginas)/ - [L,NC]
+
+
+    # Reglas para gestión de archivos
+    RewriteRule ^profesores/archivos$ profesores/archivos/gestionar.php [L]
+    RewriteRule ^profesores/archivos/subir$ profesores/archivos/subir.php [L]
+    RewriteRule ^profesores/archivos/eliminar$ profesores/archivos/eliminar.php [L]
+    RewriteRule ^profesores/archivos/descargar$ profesores/archivos/descargar.php [L]
+    RewriteRule ^profesores/archivos/actualizar-descripcion$ profesores/archivos/actualizar_descripcion.php [L]
 </IfModule>

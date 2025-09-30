@@ -1,0 +1,104 @@
+[2025-09-28 23:37:13] Iniciando upload
+[2025-09-28 23:37:13] No es método POST
+[2025-09-28 23:39:49] Iniciando upload
+[2025-09-28 23:39:49] No es método POST
+[2025-09-28 23:42:57] Iniciando upload
+[2025-09-28 23:42:57] Método POST detectado
+[2025-09-28 23:42:57] POST: Array
+(
+    [idClase] => 1
+    [descripcion] => sdvdvsvd
+)
+
+[2025-09-28 23:42:57] FILES: Array
+(
+    [archivo] => Array
+        (
+            [name] => MapaAnalitica (1) (2).pdf
+            [full_path] => MapaAnalitica (1) (2).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\php8B09.tmp
+            [error] => 0
+            [size] => 65318
+        )
+
+)
+
+[2025-09-28 23:42:57] idClase: 1, idProfesor: 7
+[2025-09-28 23:42:57] Archivo válido detectado
+[2025-09-28 23:42:57] uploadFile iniciado
+[2025-09-28 23:42:57] fileProcess: Array
+(
+    [success] => 1
+    [fileName] => MapaAnalitica (1) (2).pdf
+    [filePath] => frontend/assets/files/MapaAnalitica__1___2__1759095777_68d9abe143f1c.pdf
+    [fileType] => application/pdf
+    [fileSize] => 65318
+)
+
+[2025-09-28 23:42:57] getNextFileNumber: 1
+[2025-09-28 23:42:57] nextFileNumber: 1
+[2025-09-28 23:42:57] Query: INSERT INTO Archivos 
+              (IdClase_FK, IdProfesor_FK, NoArchivo, NombreArchivo, 
+               ArchivoURL, TipoArchivo, Tamanio, Descripcion)
+              VALUES 
+              (:idClase, :idProfesor, :noArchivo, :nombreArchivo, 
+               :archivoURL, :tipoArchivo, :tamanio, :descripcion)
+[2025-09-28 23:42:57] Execute result: true
+[2025-09-28 23:42:57] lastInsertId: 1
+[2025-09-28 23:42:57] Resultado uploadFile: Array
+(
+    [success] => 1
+    [fileId] => 1
+)
+
+[2025-09-28 23:49:58] Iniciando upload
+[2025-09-28 23:49:58] Método POST detectado
+[2025-09-28 23:49:58] POST: Array
+(
+    [idClase] => 1
+    [descripcion] => baby
+)
+
+[2025-09-28 23:49:58] FILES: Array
+(
+    [archivo] => Array
+        (
+            [name] => photo_2025-07-30_16-16-07.jpg
+            [full_path] => photo_2025-07-30_16-16-07.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpF8AC.tmp
+            [error] => 0
+            [size] => 279502
+        )
+
+)
+
+[2025-09-28 23:49:58] idClase: 1, idProfesor: 7
+[2025-09-28 23:49:58] Archivo válido detectado
+[2025-09-28 23:49:58] uploadFile iniciado
+[2025-09-28 23:49:58] fileProcess: Array
+(
+    [success] => 1
+    [fileName] => photo_2025-07-30_16-16-07.jpg
+    [filePath] => frontend/assets/files/photo_2025-07-30_16-16-07_1759096198_68d9ad868baa3.jpg
+    [fileType] => image/jpeg
+    [fileSize] => 279502
+)
+
+[2025-09-28 23:49:58] getNextFileNumber: 2
+[2025-09-28 23:49:58] nextFileNumber: 2
+[2025-09-28 23:49:58] Query: INSERT INTO Archivos 
+              (IdClase_FK, IdProfesor_FK, NoArchivo, NombreArchivo, 
+               ArchivoURL, TipoArchivo, Tamanio, Descripcion, fechaSubida)
+              VALUES 
+              (:idClase, :idProfesor, :noArchivo, :nombreArchivo, 
+               :archivoURL, :tipoArchivo, :tamanio, :descripcion, :fechaSubida)
+[2025-09-28 23:49:58] Execute result: true
+[2025-09-28 23:49:58] lastInsertId: 2
+[2025-09-28 23:49:58] Resultado uploadFile: Array
+(
+    [success] => 1
+    [fileId] => 2
+)
+

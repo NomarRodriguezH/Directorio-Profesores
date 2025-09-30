@@ -36,6 +36,12 @@ class TeacherAuthController {
     }
     
     public function login() {
+        if (isset($_SESSION['teacher_email']) || $_SESSION['user_type'] == 'teacher') {
+            echo "Ya inciaste sesión";  
+                //        require_once '../frontend/views/teacher/panel.php';
+
+            exit();
+        }
         $errors = [];
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
