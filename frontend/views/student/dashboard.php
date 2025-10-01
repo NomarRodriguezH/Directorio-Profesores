@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../templates/header.php'; ?>
+<?php require_once __DIR__.'/../../templates/header.php'; ?>
 
 <div class="container mt-4">
     <!-- Bienvenida -->
@@ -93,7 +93,7 @@
                         <div class="text-center py-4">
                             <i class="bi bi-book display-1 text-muted"></i>
                             <p class="text-muted mt-3">No estás inscrito en ninguna clase</p>
-                            <a href="../teachers.php" class="btn btn-primary">Buscar Clases</a>
+                            <a href="lista-de-profesores.php" class="btn btn-primary">Buscar Clases</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -227,4 +227,4 @@
 }
 </style>
 
-<?php require_once __DIR__ . '/../templates/footer.php'; ?>		
+<?php require_once __DIR__ . '/../../templates/footer.php'; ?>		

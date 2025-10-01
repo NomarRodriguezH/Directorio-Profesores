@@ -116,8 +116,8 @@ class ClassModel {
     public function getClassEnrollments($idClase, $cedulaProfesor) {
         $query = "SELECT u.*, i.FechaIngreso, i.Estado, i.CalificacionPersonal, i.Comentario
                   FROM Inscritos i
-                  INNER JOIN Usuarios u ON i.Correo_FK = u.Correo
-                  WHERE i.IdClase_FK = :idClase AND i.CedulaProfesor_FK = :cedula
+                  INNER JOIN Estudiantes u ON i.idEstudiante_FK = u.Correo
+                  WHERE i.IdClase_FK = :idClase AND i.idProfesor_FK = :cedula
                   ORDER BY i.FechaIngreso DESC";
         
         $stmt = $this->conn->prepare($query);

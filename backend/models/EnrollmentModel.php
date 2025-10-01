@@ -22,17 +22,28 @@ class EnrollmentModel {
             return false; // Ya está inscrito
         }
         
-        // si no esta inscrito, inscribirlo ->
+        // si no esta inscrito, mandarlo a pendientes ->
         $query = "INSERT INTO " . $this->table_name . " 
                   (idEstudiante_FK, IdClase_FK, idProfesor_FK, FechaIngreso, Estado)
                   VALUES 
-                  (:idE, :idClase, :idP, NOW(), 'activo')";
+                  (:idE, :idClase, :idP, NOW(), 'pendiente')";
         
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':idE', $correoEstudiante, PDO::PARAM_STR);
+        $stmt->bindParam(':idE', $idEstudiante, PDO::PARAM_STR);
         $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
         $stmt->bindParam(':idP', $idProfe, PDO::PARAM_STR);
         
+        return $stmt->execute();
+    }
+
+    public function acceptStudent($idEstudiante, $idClase) {
+        $query = "UPDATE " . $this->table_name . "
+                  SET Estado = 'activo'
+                  WHERE idEstudiante_FK = :idE AND IdClase = :idClase";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':idE', $idEstudiante, PDO::PARAM_STR);
+        $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
+
         return $stmt->execute();
     }
 

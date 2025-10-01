@@ -41,8 +41,24 @@ class TeacherController {
         $page_title = "Profesores Disponibles";
         require_once 'frontend/views/teacher/list.php';
     }
-    
+
+    //AL ENUM DE LA BD AGREGUÉ EL ESTADO DE PENDIENTE
+    //SI LLEGA A CAUSAR PROBLEMAS HAY QUE CAMBIAR EL CORREO POR EL ID EN LA FK DE INSCRITOS
     public function detail() {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            require_once __DIR__ . '/../models/EnrollmentModel.php';
+            require_once __DIR__ . '/../models/ClassModel.php';
+            require_once __DIR__ . '/../models/TeacherModel.php';
+            $enrollmentModel = new EnrollmentModel();
+            $classModel = new ClassModel();
+            $teacherModel = new TeacherModel();
+
+            //INSCIRBIR A CLASE
+            $class = $classModel->getClassById($_POST['IdClase']);
+            $enrollmentModel->enrollStudent($_SESSION['user_email'],$_POST['IdClase'],$class['IdProfesor_FK']);
+            header('Location: ver-profesor?correo='.$_POST['Correo'].'.php');
+        }
+        else{
         if (isset($_GET['correo'])) {
             require_once __DIR__ . '/../models/TeacherModel.php';
             require_once __DIR__ . '/../models/ClassModel.php';
@@ -54,9 +70,9 @@ class TeacherController {
             
             $teacher = $teacherModel->getTeacherByCedula($_GET['correo']); // SE CAMBIO EL CORREO POR LA CEDULA
             if ($teacher) {
-                $classes = $classModel->getClassesByTeacher($_GET['correo']);
-                $reviews = $reviewModel->getReviewsByTeacher($_GET['correo']);
-                $ratingStats = $reviewModel->getRatingStats($_GET['correo']);
+                $classes = $classModel->getClassesByTeacher($teacher['IdProfesor']);
+                $reviews = $reviewModel->getReviewsByTeacher($teacher['IdProfesor']);
+                $ratingStats = $reviewModel->getRatingStats($teacher['IdProfesor']);
                 
                 $page_title = $teacher['Nombre'] . " " . $teacher['ApPaterno'] . " - Perfil";
                 require_once 'frontend/views/teacher/detail.php';
@@ -70,6 +86,7 @@ class TeacherController {
             echo "error 2";
             //header('Location: lista-de-profesores.php');
             exit();
+        }
         }
     }
 }

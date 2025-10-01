@@ -137,7 +137,7 @@
     overflow: hidden;
   }
   .card-img-top {
-    text-align: ;
+    /*text-align: ;*/
     height: 100%;
     width: 100%;
     object-fit: cover;

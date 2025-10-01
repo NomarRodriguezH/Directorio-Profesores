@@ -63,6 +63,35 @@
 
 <!--Alumnos-->
 <h2>Alumnos</h2>
+<?php print_r($alumnos) ?>
+<h3>Inscritos</h3>
+<?php foreach($alumnos as $alumno): ?>
+    <?php if ($alumno['Estado'] == 'activo'): ?>
+        <?php print_r($alumno) ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+<h3>Pendientes</h3>
+<?php foreach($alumnos as $alumno): ?>
+    <?php if ($alumno['Estado'] == 'pendiente'): ?>
+        <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
+        <h5><?php echo $alumno['FechaIngreso'] ?></h5>
+        <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
+        <?php //print_r($alumno) ?>
+        <input type="submit" value="Aceptar en la clase">
+    <?php endif; ?>
+<?php endforeach; ?>
+<h3>Completados</h3>
+<?php foreach($alumnos as $alumno): ?>
+    <?php if ($alumno['Estado'] == 'completado'): ?>
+        <?php print_r($alumno) ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+<h3>Cancelados</h3>
+<?php foreach($alumnos as $alumno): ?>
+    <?php if ($alumno['Estado'] == 'cancelado'): ?>
+        <?php print_r($alumno) ?>
+    <?php endif; ?>
+<?php endforeach; ?>
 
 <!--Archivos-->
 <h2>Archivos</h2>
