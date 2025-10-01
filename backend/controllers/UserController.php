@@ -120,7 +120,7 @@ class UserController {
 
     
     public function login() {
-        if (isset($_SESSION['user_id']) || $_SESSION['user_type'] == 'student') {
+        if (isset($_SESSION['user_id']) || isset($_SESSION['user_type']) == 'student') {
             //header('Location: panel.php');
             echo "ya iniciaste sesión";
             exit();
@@ -160,7 +160,6 @@ class UserController {
     public function logout() {
         session_start();
         session_unset();
-        session_destroy();
         header('Location: index.php');
         exit();
     }

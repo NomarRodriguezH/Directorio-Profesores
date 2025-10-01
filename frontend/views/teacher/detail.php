@@ -148,11 +148,13 @@
                                                 </div>
                                                 
                                                 <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'student'): ?>
-                                                    <button class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#inscribirModal" 
+                                                    <form action="ver-profesor?correo=<?php echo urlencode($teacher['Correo']); ?>" method="POST">
+                                                        <input type="submit" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#inscribirModal" value="Inscribirse"
                                                             data-clase-id="<?php echo $class['IdClase']; ?>"
                                                             data-clase-name="<?php echo htmlspecialchars($class['Materia']); ?>">
-                                                        Inscribirse
-                                                    </button>
+                                                        <input type="hidden" name="IdClase" value="<?php echo $class['IdClase']; ?>">
+                                                        <input type="hidden" name="Correo" value="<?php echo $_GET['correo']; ?>">
+                                                    </form>
                                                 <?php elseif (!isset($_SESSION['user_id'])): ?>
                                                     <a href="login.php" class="btn btn-sm btn-outline-primary mt-2">Iniciar sesión para inscribirse</a>
                                                 <?php endif; ?>

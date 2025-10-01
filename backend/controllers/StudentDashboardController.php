@@ -167,8 +167,8 @@ class StudentDashboardController {
     private function countUniqueTeachers($enrollments) {
         $teachers = [];
         foreach ($enrollments as $enrollment) {
-            if (!in_array($enrollment['CedulaProfesor_FK'], $teachers)) {
-                $teachers[] = $enrollment['CedulaProfesor_FK'];
+            if (!in_array($enrollment['idProfesor_FK'], $teachers)) {
+                $teachers[] = $enrollment['idProfesor_FK'];
             }
         }
         return count($teachers);

@@ -44,7 +44,7 @@ class ClassController {
             exit();
         }
         
-       require_once __DIR__ . '/../models/ClassModel.php';
+        require_once __DIR__ . '/../models/ClassModel.php';
         $model = new ClassModel();
         
         $idClase = $_GET['id'];
@@ -57,6 +57,7 @@ class ClassController {
             exit();
         }
         
+        $alumnos = $model->getClassEnrollments($idClase, $cedulaProfesor);
         $class = $model->getClassById($idClase);
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

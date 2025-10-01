@@ -18,10 +18,18 @@ $userType = $isLoggedIn ? $_SESSION['user_type'] : '';
         <a class="navbar-brand" href="index.php"><?php echo "   DP"; ?></a>
         
         <div class="navbar-nav ms-auto">
-           <?php if ($isLoggedIn && $userType === 'student'): ?>
-            <a class="nav-link" href="../estudiantes/dashboard.php">Dashboard</a>
+            <?php if(!$isLoggedIn): ?>
+            <a href="login">Iniciar sesión</a>
+            <?php endif; ?>
+            <?php if ($isLoggedIn && $userType === 'student'): ?>
+            <a class="nav-link" href="panel.php">Dashboard</a>
             <a class="nav-link" href="../estudiantes/clases.php">Mis Clases</a>
             <a class="nav-link" href="../estudiantes/archivos.php">Archivos</a>
+            <a href="logout">Cerrar sesión</a>
+            <?php endif; ?>
+            <?php if ($isLoggedIn): ?>
+            <a class="nav-link" href="panel">Dashboard</a>
+            <a href="logout">Cerrar sesión</a>
             <?php endif; ?>
         </div>
     </div>

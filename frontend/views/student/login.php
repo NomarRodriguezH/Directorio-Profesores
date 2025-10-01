@@ -136,7 +136,7 @@
 
 <div class="text-center mt-3">
         <p>¿No tienes cuenta? <a class="olvidada" href="registro-estudiante">Regístrate como estudiante</a></p>
-        
+        <p>¿Eres profesor? <a class="olvidada" href="profesores/login">Inicia sesión aquí</a></p>
     </div>
 
 
