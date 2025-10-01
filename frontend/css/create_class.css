@@ -1,0 +1,108 @@
+/* vista para create_class */
+body {
+  background-color: #0f0f1a;
+  font-family: 'Press Start 2P', monospace;
+  color: #e0e0e0;
+  background-image: url('../assets/background.gif'); /* Ajusta la ruta si es necesario */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.container {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+/* Tarjeta principal */
+.card {
+  background-color: rgba(20, 20, 30, 0.9);
+  border: 2px solid #6f00ff;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #6f00ff;
+}
+
+/* Encabezado */
+.card-header h2 {
+  font-size: 20px;
+  color: #ffccff;
+  text-shadow: 1px 1px #6f00ff;
+}
+
+/* Etiquetas */
+.form-label {
+  font-size: 12px;
+  color: #ccccff;
+}
+
+/* Inputs y selects */
+.form-control,
+.form-select {
+  background-color: #1a1a2e;
+  border: 1px solid #6f00ff;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #ff66cc;
+  box-shadow: 0 0 5px #ff66cc;
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: vertical;
+}
+
+/* Texto de ayuda */
+.form-text {
+  font-size: 10px;
+  color: #9999cc;
+}
+
+/* Checkbox y horarios */
+.form-check-label {
+  font-size: 12px;
+  color: #ccccff;
+}
+
+.time-input:disabled {
+  background-color: #2a2a3e;
+  color: #777;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #6f00ff;
+  border: none;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background-color: #9900cc;
+}
+
+.btn-secondary {
+  background-color: #333344;
+  border: none;
+  font-size: 12px;
+}
+
+.btn-secondary:hover {
+  background-color: #555566;
+}
+
+/* Alertas */
+.alert-danger {
+  background-color: #330000;
+  border: 1px solid #ff3333;
+  color: #ffcccc;
+  font-size: 12px;
+}
+
+
+
+
