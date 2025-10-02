@@ -56,7 +56,7 @@ class UserController {
             }
         }
         
-        $page_title = "Registro de Estudiante";
+        $pagina = "Registro de Estudiante";
         require_once 'frontend/views/student/register.php';
     }
 
@@ -114,7 +114,7 @@ class UserController {
             }
         }
         
-        $page_title = "Registro de Estudiante";
+        $pagina = "Registro de Estudiante";
         require_once 'frontend/views/student/register.php';
     }
 
@@ -153,7 +153,7 @@ class UserController {
             }
         }
         
-        $page_title = "Iniciar Sesión";
+        $pagina = "Iniciar Sesión";
         require_once 'frontend/views/student/login.php';
     }
     
@@ -214,7 +214,7 @@ class UserController {
             }
         }
         
-        $page_title = "Mi Perfil";
+        $pagina = "Mi Perfil";
         require_once 'frontend/views/student/profile.php';
     }
 
@@ -231,7 +231,7 @@ class UserController {
         $user = $model->getUserByEmail($_SESSION['user_email']);
         
         
-        $page_title = "Mi Perfil";
+        $pagina = "Mi Perfil";
         require_once 'frontend/views/student/dashboard.php';
     }
 

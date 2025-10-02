@@ -1,7 +1,7 @@
 <?php
 class StudentController {
     public function acceptInClass() {
-        $page_title = "Editar Clase";
+        $pagina = "Editar Clase";
 
         if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'teacher') {
             header('Location: ../login.php');

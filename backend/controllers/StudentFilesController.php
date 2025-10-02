@@ -31,10 +31,10 @@ class StudentFilesController {
             
             $files = $fileModel->getFilesByClass($idClase);
             $class = $classModel->getClassById($idClase);
-            $page_title = "Archivos - " . $class['Materia'];
+            $pagina = "Archivos - " . $class['Materia'];
         } else {
             $files = $fileModel->getRecentFilesForStudent($correoEstudiante, 50);
-            $page_title = "Todos mis Archivos";
+            $pagina = "Todos mis Archivos";
         }
         
         // Filtrar por tipo si se especifica

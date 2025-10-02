@@ -86,7 +86,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0"><?php echo $page_title; ?></h4>
+                    <h4 class="mb-0"><?php echo $pagina; ?></h4>
                     <span class="badge bg-secondary">
                         <?php echo count($files); ?> archivo(s)
                     </span>
