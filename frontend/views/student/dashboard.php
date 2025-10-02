@@ -79,7 +79,7 @@
                                         Inscrito el: <?php echo date('d/m/Y', strtotime($enrollment['FechaIngreso'])); ?>
                                     </small>
                                     <div class="mt-2">
-                                        <a href="../profesor_detalle.php?cedula=<?php echo $enrollment['CedulaProfesional']; ?>" 
+                                        <a href="../ver-profesor.php?cedula=<?php echo $enrollment['idProfesor_FK']; ?>" 
                                            class="btn btn-sm btn-outline-primary">Ver Profesor</a>
                                         <?php if ($enrollment['Estado'] === 'activo'): ?>
                                             <a href="clase.php?id=<?php echo $enrollment['IdClase_FK']; ?>" 
@@ -185,7 +185,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3 mb-2">
-                            <a href="../teachers.php" class="btn btn-outline-primary w-100">
+                            <a href="lista-de-profesores.php" class="btn btn-outline-primary w-100">
                                 <i class="bi bi-search"></i> Buscar Profesores
                             </a>
                         </div>

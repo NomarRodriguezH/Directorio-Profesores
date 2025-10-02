@@ -63,11 +63,15 @@ class TeacherController {
             require_once __DIR__ . '/../models/TeacherModel.php';
             require_once __DIR__ . '/../models/ClassModel.php';
             require_once __DIR__ . '/../models/ReviewModel.php';
+            require_once __DIR__ . '/../models/EnrollmentModel.php';
             
+            $enrollmentModel = new EnrollmentModel();
             $teacherModel = new TeacherModel();
             $classModel = new ClassModel();
             $reviewModel = new ReviewModel();
             
+            $userEnrollments = $enrollmentModel->getStudentEnrollments($_SESSION['user_id']);
+            $userClasses = array_column($userEnrollments, 'IdClase_FK');
             $teacher = $teacherModel->getTeacherByCedula($_GET['correo']); // SE CAMBIO EL CORREO POR LA CEDULA
             if ($teacher) {
                 $classes = $classModel->getClassesByTeacher($teacher['IdProfesor']);

@@ -148,13 +148,18 @@
                                                 </div>
                                                 
                                                 <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'student'): ?>
-                                                    <form action="ver-profesor?correo=<?php echo urlencode($teacher['Correo']); ?>" method="POST">
-                                                        <input type="submit" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#inscribirModal" value="Inscribirse"
-                                                            data-clase-id="<?php echo $class['IdClase']; ?>"
-                                                            data-clase-name="<?php echo htmlspecialchars($class['Materia']); ?>">
-                                                        <input type="hidden" name="IdClase" value="<?php echo $class['IdClase']; ?>">
-                                                        <input type="hidden" name="Correo" value="<?php echo $_GET['correo']; ?>">
-                                                    </form>
+                                                    <?php if (in_array($class['IdClase'], $userClasses)): ?>
+                                                        <h4>Ya estas inscrito en la clase</h4>
+                                                        <a href="panel.php">Ver panel</a>
+                                                    <?php else: ?>
+                                                        <form action="ver-profesor?correo=<?php echo urlencode($teacher['Correo']); ?>" method="POST">
+                                                            <input type="submit" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#inscribirModal" value="Inscribirse"
+                                                                data-clase-id="<?php echo $class['IdClase']; ?>"
+                                                                data-clase-name="<?php echo htmlspecialchars($class['Materia']); ?>">
+                                                            <input type="hidden" name="IdClase" value="<?php echo $class['IdClase']; ?>">
+                                                            <input type="hidden" name="Correo" value="<?php echo $_GET['correo']; ?>">
+                                                        </form>
+                                                    <?php endif; ?>
                                                 <?php elseif (!isset($_SESSION['user_id'])): ?>
                                                     <a href="login.php" class="btn btn-sm btn-outline-primary mt-2">Iniciar sesión para inscribirse</a>
                                                 <?php endif; ?>
