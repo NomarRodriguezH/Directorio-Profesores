@@ -58,38 +58,45 @@
         </div>
     <?php endforeach; ?>
     <button type="button" id="editBtn" onclick="activarCambios()">Editar datos</button>
-    <button type="submit" disabled id="saveBtn">Guardar cambios</button>
+    <input type="submit" disabled id="saveBtn" value="Guardar cambios">
 </form>
 
 <!--Alumnos-->
 <h2>Alumnos</h2>
-<?php print_r($alumnos) ?>
 <h3>Inscritos</h3>
 <?php foreach($alumnos as $alumno): ?>
     <?php if ($alumno['Estado'] == 'activo'): ?>
-        <?php print_r($alumno) ?>
+        <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
+        <h5><?php echo $alumno['FechaIngreso'] ?></h5>
+        <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
     <?php endif; ?>
 <?php endforeach; ?>
 <h3>Pendientes</h3>
 <?php foreach($alumnos as $alumno): ?>
     <?php if ($alumno['Estado'] == 'pendiente'): ?>
+    <form action="aceptar-estudiante?id=<?php echo $_GET['id'] ?>" method="POST">
+        <input type="hidden" name="aluCorreo" value="<?php echo $alumno['Correo'] ?>">
         <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
         <h5><?php echo $alumno['FechaIngreso'] ?></h5>
         <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
-        <?php //print_r($alumno) ?>
         <input type="submit" value="Aceptar en la clase">
+    </form>
     <?php endif; ?>
 <?php endforeach; ?>
 <h3>Completados</h3>
 <?php foreach($alumnos as $alumno): ?>
     <?php if ($alumno['Estado'] == 'completado'): ?>
-        <?php print_r($alumno) ?>
+        <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
+        <h5><?php echo $alumno['FechaIngreso'] ?></h5>
+        <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
     <?php endif; ?>
 <?php endforeach; ?>
 <h3>Cancelados</h3>
 <?php foreach($alumnos as $alumno): ?>
     <?php if ($alumno['Estado'] == 'cancelado'): ?>
-        <?php print_r($alumno) ?>
+        <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
+        <h5><?php echo $alumno['FechaIngreso'] ?></h5>
+        <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
     <?php endif; ?>
 <?php endforeach; ?>
 

@@ -39,7 +39,7 @@ class EnrollmentModel {
     public function acceptStudent($idEstudiante, $idClase) {
         $query = "UPDATE " . $this->table_name . "
                   SET Estado = 'activo'
-                  WHERE idEstudiante_FK = :idE AND IdClase = :idClase";
+                  WHERE idEstudiante_FK = :idE AND IdClase_FK = :idClase";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':idE', $idEstudiante, PDO::PARAM_STR);
         $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);

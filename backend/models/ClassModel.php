@@ -68,7 +68,7 @@ class ClassModel {
                   MiHI = :miHI, MiHF = :miHF, JuHI = :juHI, JuHF = :juHF,
                   ViHI = :viHI, ViHF = :viHF, SaHI = :saHI, SaHF = :saHF,
                   DoHI = :doHI, DoHF = :doHF
-                  WHERE IdClase = :idClase AND CedulaProfesional_FK = :cedula";
+                  WHERE IdClase = :idClase AND IdProfesor_FK = :cedula";
         
         $stmt = $this->conn->prepare($query);
         

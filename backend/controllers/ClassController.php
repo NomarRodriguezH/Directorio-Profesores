@@ -67,7 +67,7 @@ class ClassController {
                 
                 if ($model->updateClass($idClase, $data['data'])) {
                     $_SESSION['success_message'] = "Clase actualizada exitosamente";
-                    header('Location: xd.php');
+                    header('Location: clase?id='.$idClase.'.php');
                     exit();
                 } else {
                     $errors[] = "Error al actualizar la clase";
@@ -137,8 +137,8 @@ class ClassController {
                 $hasSchedule = true;
                 
                 // Validar formato de horas
-                if (!preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', $hi) || 
-                    !preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', $hf)) {
+                if (!preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', substr($hi, 0, 5)) || 
+                    !preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', substr($hf, 0, 5))) {
                     $errors[] = "Formato de hora inválido para " . $this->getDiaNombre($dia);
                 } elseif (strtotime($hf) <= strtotime($hi)) {
                     $errors[] = "La hora de fin debe ser mayor a la de inicio para " . $this->getDiaNombre($dia);
