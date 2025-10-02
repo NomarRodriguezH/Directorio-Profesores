@@ -55,7 +55,7 @@ class TeacherController {
 
             //INSCIRBIR A CLASE
             $class = $classModel->getClassById($_POST['IdClase']);
-            $enrollmentModel->enrollStudent($_SESSION['user_email'],$_POST['IdClase'],$class['IdProfesor_FK']);
+            $enrollmentModel->enrollStudent($_SESSION['user_id'],$_POST['IdClase'],$class['IdProfesor_FK']);
             header('Location: ver-profesor?correo='.$_POST['Correo'].'.php');
         }
         else{
@@ -63,11 +63,15 @@ class TeacherController {
             require_once __DIR__ . '/../models/TeacherModel.php';
             require_once __DIR__ . '/../models/ClassModel.php';
             require_once __DIR__ . '/../models/ReviewModel.php';
+            require_once __DIR__ . '/../models/EnrollmentModel.php';
             
+            $enrollmentModel = new EnrollmentModel();
             $teacherModel = new TeacherModel();
             $classModel = new ClassModel();
             $reviewModel = new ReviewModel();
             
+            $userEnrollments = $enrollmentModel->getStudentEnrollments($_SESSION['user_id']);
+            $userClasses = array_column($userEnrollments, 'IdClase_FK');
             $teacher = $teacherModel->getTeacherByCedula($_GET['correo']); // SE CAMBIO EL CORREO POR LA CEDULA
             if ($teacher) {
                 $classes = $classModel->getClassesByTeacher($teacher['IdProfesor']);
@@ -89,7 +93,5 @@ class TeacherController {
         }
         }
     }
-
-
-}// FIN DE LA CLASE
+}
 ?>

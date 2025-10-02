@@ -88,5 +88,55 @@ class EnrollmentModel {
     }
 
 
+
+    public function getEnrollmentDetails($correoEstudiante, $idClase) {
+        $query = "SELECT i.*, c.Materia, c.Descripcion as DescripcionClase,
+                         p.Nombre as ProfesorNombre, p.ApPaterno as ProfesorApellido,
+                         p.IdProfesor, p.Especialidad, p.CalificacionPromedio
+                  FROM Inscritos i
+                  INNER JOIN Clases c ON i.IdClase_FK = c.IdClase
+                  INNER JOIN Profesores p ON i.idProfesor_FK = p.IdProfesor
+                  WHERE i.idEstudiante_FK = :correo AND i.IdClase_FK = :idClase";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':correo', $correoEstudiante, PDO::PARAM_STR);
+        $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetch();
+    }
+    
+    public function rateClass($correoEstudiante, $idClase, $calificacion, $comentario = '') {
+        $query = "UPDATE Inscritos 
+                  SET CalificacionPersonal = :calificacion, 
+                      Comentario = :comentario,
+                      FechaCalificacion = NOW()
+                  WHERE Correo_FK = :correo AND IdClase_FK = :idClase";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':calificacion', $calificacion, PDO::PARAM_STR);
+        $stmt->bindParam(':comentario', $comentario, PDO::PARAM_STR);
+        $stmt->bindParam(':correo', $correoEstudiante, PDO::PARAM_STR);
+        $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    }
+    
+    public function getActiveEnrollments($correoEstudiante) {
+        $query = "SELECT i.*, c.Materia, p.Nombre as ProfesorNombre, p.ApPaterno as ProfesorApellido
+                  FROM Inscritos i
+                  INNER JOIN Clases c ON i.IdClase_FK = c.IdClase
+                  INNER JOIN Profesores p ON i.idProfesor_FK = p.CedulaProfesional
+                  WHERE i.Correo_FK = :correo AND i.Estado = 'activo'
+                  ORDER BY c.Materia";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':correo', $correoEstudiante, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        return $stmt->fetchAll();
+    }
+
+
 }//Fin de clase
 ?>

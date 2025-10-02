@@ -43,7 +43,7 @@ class TeacherModel {
     }
     
     public function getTeacherByCedula($cedula) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE correo = :cedula AND Activo = 1 LIMIT 1";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE Correo = :cedula AND Activo = 1 LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':cedula', $cedula, PDO::PARAM_STR);
         $stmt->execute();

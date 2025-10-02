@@ -18,13 +18,12 @@ class StudentDashboardController {
         
         $correoEstudiante = $_SESSION['user_email'];
         
-        // Obtener datos para el dashboard
         $user = $userModel->getUserByEmail($correoEstudiante);
         $enrollments = $enrollmentModel->getStudentEnrollments($correoEstudiante);
         $upcomingClasses = $this->getUpcomingClasses($enrollments);
         $recentActivity = $this->getRecentActivity($correoEstudiante);
         
-        // Estadísticas
+       
         $stats = [
             'total_clases' => count($enrollments),
             'clases_activas' => $this->countActiveEnrollments($enrollments),
