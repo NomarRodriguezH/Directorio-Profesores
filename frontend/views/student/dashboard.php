@@ -59,7 +59,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Mis Clases</h5>
-                    <a href="clases.php" class="btn btn-sm btn-outline-primary">Ver Todas</a>
+                    <a href="alumno/clases.php" class="btn btn-sm btn-outline-primary">Ver Todas</a>
                 </div>
                 <div class="card-body">
                     <?php if (!empty($enrollments)): ?>
@@ -190,12 +190,12 @@
                             </a>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <a href="clases.php" class="btn btn-outline-success w-100">
+                            <a href="alumno/clases.php" class="btn btn-outline-success w-100">
                                 <i class="bi bi-list-ul"></i> Mis Clases
                             </a>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <a href="archivos.php" class="btn btn-outline-info w-100">
+                            <a href="alumno/archivos.php" class="btn btn-outline-info w-100">
                                 <i class="bi bi-folder"></i> Archivos
                             </a>
                         </div>
@@ -227,4 +227,4 @@
 }
 </style>
 
-<?php require_once __DIR__ . '/../../templates/footer.php'; ?>		
+<?php require_once __DIR__ . '/../../templates/footer.php'; ?>      

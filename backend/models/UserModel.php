@@ -38,8 +38,7 @@ class UserModel {
         return $stmt->execute();
     }
 
-     
-    
+      
     public function getUserByEmail($email) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE Correo = :email AND Activo = 1 LIMIT 1";
         $stmt = $this->conn->prepare($query);
@@ -49,7 +48,6 @@ class UserModel {
         return $stmt->fetch();
     }
     
-    // Validar credenciales de usuario
     public function validateUser($email, $password) {
         $user = $this->getUserByEmail($email);
         
@@ -87,5 +85,45 @@ class UserModel {
         
         return $stmt->execute();
     }
-}
+
+
+
+    //FUNCIONES PARA ADMINISTRADOR
+     public function getAllUsers() {
+        $query = "SELECT * FROM estudiantes ORDER BY FechaRegistro DESC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->fetchAll();
+    }
+    
+    public function countAllUsers() {
+        $query = "SELECT COUNT(*) as total FROM estudiantes";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->fetch()['total'];
+    }
+    
+    public function countActiveUsers() {
+        $query = "SELECT COUNT(*) as total FROM estudiantes WHERE Activo = 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->fetch()['total'];
+    }
+    
+    // Cambiar estado de usuario
+    public function toggleUserStatus($userId, $newStatus) {
+        $query = "UPDATE estudiantes SET Activo = :activo WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':activo', $newStatus, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    }
+
+
+
+}// FIN DE LA CLASE
 ?>

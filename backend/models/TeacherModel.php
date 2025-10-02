@@ -9,15 +9,41 @@ class TeacherModel {
     }
     
     public function getAllTeachers() {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE Activo = 1 ORDER BY Nombre, ApPaterno";
+        $query = "SELECT * FROM " . $this->table_name . " ORDER BY Nombre, ApPaterno";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         
         return $stmt->fetchAll();
     }
+
+     public function countAllTeachers() {
+        $query = "SELECT COUNT(*) as total FROM " . $this->table_name ;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->fetch()['total'];
+    }
+
+    public function countActiveTeachers() {
+        $query = "SELECT COUNT(*) as total FROM " . $this->table_name . " WHERE Activo = 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->fetch()['total'];
+    }
+
+
+     public function toggleTeacherStatus($cedulaProfesor, $newStatus) {
+        $query = "UPDATE " . $this->table_name . " SET Activo = :activo WHERE IdProfesor = :cedula";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':activo', $newStatus, PDO::PARAM_INT);
+        $stmt->bindParam(':cedula', $cedulaProfesor, PDO::PARAM_STR);
+        
+        return $stmt->execute();
+    }
     
     public function getTeacherByCedula($cedula) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE correo = :cedula AND Activo = 1 LIMIT 1";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE Correo = :cedula AND Activo = 1 LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':cedula', $cedula, PDO::PARAM_STR);
         $stmt->execute();
