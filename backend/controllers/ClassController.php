@@ -1,7 +1,7 @@
 <?php
 class ClassController {
     public function create() {
-        $page_title ="Crear Clase";
+        $pagina ="Crear Clase";
         if (!isset($_SESSION['teacher_email']) || $_SESSION['user_type'] !== 'teacher') {
             $_SESSION['error_message'] = "Debes ser profesor para crear clases";
             echo $_SESSION['error_message'];    
@@ -129,26 +129,28 @@ class ClassController {
         $hasSchedule = false;
         
         foreach ($dias as $dia) {
-            $hi = trim($postData[$dia . 'HI']);
-            $hf = trim($postData[$dia . 'HF']);
+            if (isset($postData[$dia . 'HI']) && isset($postData[$dia . 'HF'])) {
+                $hi = trim($postData[$dia . 'HI']);
+                $hf = trim($postData[$dia . 'HF']);
 
-            if (!empty($hi) && !empty($hf)) {
-                $hasSchedule = true;
-                
-                // Validar formato de horas
-                if (!preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', substr($hi, 0, 5)) || 
-                    !preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', substr($hf, 0, 5))) {
-                    $errors[] = "Formato de hora inválido para " . $this->getDiaNombre($dia);
-                } elseif (strtotime($hf) <= strtotime($hi)) {
-                    $errors[] = "La hora de fin debe ser mayor a la de inicio para " . $this->getDiaNombre($dia);
+                if (!empty($hi) && !empty($hf)) {
+                    $hasSchedule = true;
+                    
+                    // Validar formato de horas
+                    if (!preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', substr($hi, 0, 5)) || 
+                        !preg_match('/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/', substr($hf, 0, 5))) {
+                        $errors[] = "Formato de hora inválido para " . $this->getDiaNombre($dia);
+                    } elseif (strtotime($hf) <= strtotime($hi)) {
+                        $errors[] = "La hora de fin debe ser mayor a la de inicio para " . $this->getDiaNombre($dia);
+                    }
+                    
+                    $data[$dia . 'HI'] = $hi;
+                    $data[$dia . 'HF'] = $hf;
+
+                } else {
+                    $data[$dia . 'HI'] = null;
+                    $data[$dia . 'HF'] = null;
                 }
-                
-                $data[$dia . 'HI'] = $hi;
-                $data[$dia . 'HF'] = $hf;
-
-            } else {
-                $data[$dia . 'HI'] = null;
-                $data[$dia . 'HF'] = null;
             }
         }
         
