@@ -20,9 +20,9 @@ class StudentDashboardController {
         
         // Obtener datos para el dashboard
         $user = $userModel->getUserByEmail($correoEstudiante);
-        $enrollments = $enrollmentModel->getStudentEnrollments($correoEstudiante);
+        $enrollments = $enrollmentModel->getStudentEnrollments($user['id']);
         $upcomingClasses = $this->getUpcomingClasses($enrollments);
-        $recentActivity = $this->getRecentActivity($correoEstudiante);
+        $recentActivity = $this->getRecentActivity($user['id']);
         
         // Estadísticas
         $stats = [

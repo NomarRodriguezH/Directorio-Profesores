@@ -55,7 +55,7 @@ class TeacherController {
 
             //INSCIRBIR A CLASE
             $class = $classModel->getClassById($_POST['IdClase']);
-            $enrollmentModel->enrollStudent($_SESSION['user_email'],$_POST['IdClase'],$class['IdProfesor_FK']);
+            $enrollmentModel->enrollStudent($_SESSION['user_id'],$_POST['IdClase'],$class['IdProfesor_FK']);
             header('Location: ver-profesor?correo='.$_POST['Correo'].'.php');
         }
         else{
