@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profesores Gengar</title>
+  <title>Directorio De Profesores Gengar</title>
   <style>
     
     body {
@@ -187,10 +187,9 @@
 </head>
 <body>
 
-  <!-- Encabezado -->
   <header>
     <img src="https://www.pngplay.com/wp-content/uploads/11/Gengar-PNG-Photos.png" alt="Logo Gengar">
-    <h1>Profesores Gengar</h1>
+    <h1>Directorio De Profesores  -  Gengar</h1>
     <nav>
       <a href="#acerca">Acerca de</a>
       <a href="#nosotros">Sobre Nosotros</a>

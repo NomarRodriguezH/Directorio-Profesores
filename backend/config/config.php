@@ -25,4 +25,9 @@ define('MAX_FILE_SIZE', 4 * 1024 * 1024); // 2MB
 define('ALLOWED_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']);
 define('UPLOAD_DIR', '../frontend/assets/images/teachers/');
 
+
+//ADMINISTRADORES, SI ALGUIEN PUEDE EDITAR ESTO = NOS HACEKEO DESDE EL HOSTING = TODO EL SISTEMA ES SUYO (POCO PROBABLE)
+define('ADMIN_USERS', [
+    'mazna@gmail.com'
+]);
 ?>
