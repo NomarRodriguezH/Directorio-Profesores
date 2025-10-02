@@ -38,7 +38,7 @@ class TeacherController {
         $estados = $model->getAllStates();
         $delegaciones = $model->getAllDelegations($estado);
         
-        $page_title = "Profesores Disponibles";
+        $pagina = "Profesores Disponibles";
         require_once 'frontend/views/teacher/list.php';
     }
 
@@ -78,7 +78,7 @@ class TeacherController {
                 $reviews = $reviewModel->getReviewsByTeacher($teacher['IdProfesor']);
                 $ratingStats = $reviewModel->getRatingStats($teacher['IdProfesor']);
                 
-                $page_title = $teacher['Nombre'] . " " . $teacher['ApPaterno'] . " - Perfil";
+                $pagina = $teacher['Nombre'] . " " . $teacher['ApPaterno'] . " - Perfil";
                 require_once 'frontend/views/teacher/detail.php';
             } else {
                 $_SESSION['error_message'] = "Profesor no encontrado";

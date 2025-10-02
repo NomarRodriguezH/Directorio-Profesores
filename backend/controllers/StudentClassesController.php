@@ -37,7 +37,7 @@ class StudentClassesController {
             }
         }
         
-        $page_title = "Mis Clases";
+        $pagina = "Mis Clases";
         require_once __DIR__ . '/../../frontend/views/student/classes.php';
     }
     
@@ -77,7 +77,7 @@ class StudentClassesController {
         $files = $fileModel->getFilesByClass($idClase);
         $enrollment = $enrollmentModel->getEnrollmentDetails($correoEstudiante, $idClase);
         
-        $page_title = "Clase - " . $class['Materia'];
+        $pagina = "Clase - " . $class['Materia'];
         require_once __DIR__ . '/../../frontend/views/student/class_detail.php';
     }
     

@@ -76,7 +76,7 @@ class ClassController {
             }
         }
         
-        $page_title = "Editar Clase";
+        $pagina = "Editar Clase";
         require_once '../frontend/views/teacher/edit_class.php';
     }
     

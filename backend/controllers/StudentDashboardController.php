@@ -31,7 +31,7 @@ class StudentDashboardController {
             'proximo_horario' => $this->getNextClassTime($upcomingClasses)
         ];
         
-        $page_title = "Mi Dashboard - Estudiante";
+        $pagina = "Mi Dashboard - Estudiante";
         require_once __DIR__ . '/../../frontend/views/student/dashboard.php';
     }
     

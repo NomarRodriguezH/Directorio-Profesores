@@ -20,7 +20,7 @@ class AdminController {
         $estudiantes = $userModel->getAllUsers();
         $profesores = $teacherModel->getAllTeachers();
         
-        $page_title = "Panel de Administración";
+        $pagina = "Panel de Administración";
         require_once __DIR__ . '/../../frontend/views/admin/dashboard.php';
     }
     

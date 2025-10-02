@@ -135,10 +135,10 @@ class FileController {
         
         $files = $fileModel->getFilesByClass($idClase, $idProfesor);
         $class = $classModel->getClassById($idClase);
-        $page_title = "Archivos - " . $class['Materia'];
+        $pagina = "Archivos - " . $class['Materia'];
     } else {
         $files = $fileModel->getFilesByTeacher($idProfesor);
-        $page_title = "Todos mis Archivos";
+        $pagina = "Todos mis Archivos";
     }
     
     require_once __DIR__ . '/../../frontend/views/teacher/files.php';

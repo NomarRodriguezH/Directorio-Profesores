@@ -31,7 +31,7 @@ class TeacherAuthController {
             }
         }
         
-        $page_title = "Registro de Profesor";
+        $pagina = "Registro de Profesor";
         require_once '../frontend/views/teacher/register.php';
     }
     
@@ -70,7 +70,7 @@ class TeacherAuthController {
             }
         }
         
-        $page_title = "Iniciar Sesión - Profesor";
+        $pagina = "Iniciar Sesión - Profesor";
         require_once '../frontend/views/teacher/login.php';
     }
     
@@ -269,7 +269,7 @@ class TeacherAuthController {
     }
 
     public function showDatosProfesor() {
-        $page_title = 'Datos personales';
+        $pagina = 'Datos personales';
         require_once __DIR__ . '/../models/TeacherModel.php';
         require_once __DIR__ . '/../models/ClassModel.php';
         $classModel = new ClassModel();
@@ -283,7 +283,7 @@ class TeacherAuthController {
     }
 
     public function edit() { //Falta completar
-        $page_title = 'Editar mis datos';
+        $pagina = 'Editar mis datos';
         require_once __DIR__ . '/../models/TeacherModel.php';
         $teacherData = $teacherModel->getTeacherByCedula($_SESSION['teacher_email']);
     }
