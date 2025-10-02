@@ -26,6 +26,14 @@ class StudentController {
             exit();
         }
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            require_once __DIR__ . '/../models/EnrollmentModel.php';
+            $enrollmentModel = new EnrollmentModel();
+            $enrollmentModel->acceptStudent($_POST['aluCorreo'], $idClase);
+            header('Location: clase?id='.$idClase.'.php');
+            exit();
+        }
+
         require_once '../frontend/views/teacher/edit_class.php';
     }
 }
