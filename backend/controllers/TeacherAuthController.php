@@ -36,7 +36,7 @@ class TeacherAuthController {
     }
     
     public function login() {
-        if (isset($_SESSION['teacher_email']) || $_SESSION['user_type'] == 'teacher') {
+        if (isset($_SESSION['teacher_email']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'teacher')) {
             echo "Ya inciaste sesión";  
                 //        require_once '../frontend/views/teacher/panel.php';
 
@@ -268,6 +268,65 @@ class TeacherAuthController {
         return true;
     }
 
+    private function validateUpdateData($postData) {
+        $data = [];
+        $errors = [];
+
+        $data['cedula'] = trim($postData['cedula']);
+        
+        
+        $personalFields = ['nombre', 'apPaterno', 'especialidad', 'celular', 'correo'];
+        foreach ($personalFields as $field) {
+            if (empty(trim($postData[$field]))) {
+                $errors[] = "El campo " . ucfirst($field) . " es obligatorio";
+            } else {
+                $data[$field] = trim($postData[$field]);
+            }
+        }
+        
+        $data['apMaterno'] = !empty(trim($postData['apMaterno'])) ? trim($postData['apMaterno']) : '';
+        
+        if (!empty($data['correo']) && !filter_var($data['correo'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "El formato del correo electrónico no es válido";
+        }
+        
+        $data['precioMin'] = !empty($postData['precioMin']) ? max(0, floatval($postData['precioMin'])) : 0;
+        $data['precioMax'] = !empty($postData['precioMax']) ? max($data['precioMin'], floatval($postData['precioMax'])) : $data['precioMin'];
+        
+        if ($data['precioMax'] < $data['precioMin']) {
+            $errors[] = "El precio máximo no puede ser menor al precio mínimo";
+        }
+        
+        $addressFields = ['estado', 'delegacion', 'cp', 'colonia', 'calle'];
+        foreach ($addressFields as $field) {
+            if (empty(trim($postData[$field]))) {
+                $errors[] = "El campo " . ucfirst($field) . " es obligatorio";
+            } else {
+                $data[$field] = trim($postData[$field]);
+            }
+        }
+        
+        $data['noExt'] = !empty(trim($postData['noExt'])) ? trim($postData['noExt']) : '';
+        $data['noInt'] = !empty(trim($postData['noInt'])) ? trim($postData['noInt']) : '';
+        
+        $data['descripcion'] = !empty(trim($postData['descripcion'])) ? trim($postData['descripcion']) : '';
+
+        if (empty($errors)) {
+            require_once __DIR__.'/../models/TeacherModel.php';
+            $model = new TeacherModel();
+            
+            if ($model->cedulaAsigned($data['cedula'])) {
+                $errors[] = "La cédula profesional ya está registrada";
+            }
+            
+            if ($model->emailAsigned($data['correo'])) {
+                $errors[] = "El correo electrónico ya está registrado";
+            }
+        }
+        
+        return ['data' => $data, 'errors' => $errors];
+    }
+
     public function showDatosProfesor() {
         $pagina = 'Datos personales';
         require_once __DIR__ . '/../models/TeacherModel.php';
@@ -279,13 +338,21 @@ class TeacherAuthController {
         $clases = $classModel->getClassesByTeacher($_SESSION['user_id']);
         $horarios = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
 
-        require_once '../frontend/views/teacher/panel.php';
-    }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $validateResult = $this->validateUpdateData($_POST);
 
-    public function edit() { //Falta completar
-        $pagina = 'Editar mis datos';
-        require_once __DIR__ . '/../models/TeacherModel.php';
-        $teacherData = $teacherModel->getTeacherByCedula($_SESSION['teacher_email']);
+            if(empty($validateResult['errors'])) {
+                if($teacherModel->updateTeacher($_SESSION['user_id'], $validateResult['data'])) {
+                    header('Location: panel.php');
+                    exit();
+                } else {
+                    echo 'No se pudo actualizar el profesor';
+                }
+                
+            }
+        }
+
+        require_once '../frontend/views/teacher/panel.php';
     }
 }
 ?> 

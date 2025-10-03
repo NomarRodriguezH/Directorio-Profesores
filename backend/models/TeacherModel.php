@@ -120,14 +120,14 @@ class TeacherModel {
         return $stmt->execute();
     }
     
-    public function updateTeacher($cedula, $data) {
+    public function updateTeacher($id, $data) {
         $query = "UPDATE " . $this->table_name . " SET 
                   Nombre = :nombre, ApPaterno = :apPaterno, ApMaterno = :apMaterno, 
                   Especialidad = :especialidad, Celular = :celular, Correo = :correo, 
                   PrecioMin = :precioMin, PrecioMax = :precioMax, Estado = :estado, 
                   Delegacion = :delegacion, CP = :cp, Colonia = :colonia, Calle = :calle, 
-                  NoExt = :noExt, NoInt = :noInt, Descripcion = :descripcion
-                  WHERE CedulaProfesional = :cedula";
+                  NoExt = :noExt, NoInt = :noInt, Descripcion = :descripcion, CedulaP = :cedula
+                  WHERE IdProfesor = :id";
         
         $stmt = $this->conn->prepare($query);
         
@@ -147,7 +147,8 @@ class TeacherModel {
         $stmt->bindParam(':noExt', $data['noExt'], PDO::PARAM_STR);
         $stmt->bindParam(':noInt', $data['noInt'], PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
-        $stmt->bindParam(':cedula', $cedula, PDO::PARAM_STR);
+        $stmt->bindParam(':cedula', $data['cedula'], PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         
         return $stmt->execute();
     }
@@ -276,6 +277,15 @@ class TeacherModel {
         
         return $stmt->rowCount() > 0;
     }
+
+    public function cedulaAsigned($cedula) {
+        $query = "SELECT idProfesor FROM " . $this->table_name . " WHERE idProfesor = :cedula LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':cedula', $cedula, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 1;
+    }
     
     // Verificar si el correo ya existe
     public function emailExists($email) {
@@ -285,6 +295,15 @@ class TeacherModel {
         $stmt->execute();
         
         return $stmt->rowCount() > 0;
+    }
+
+    public function emailAsigned($email) {
+        $query = "SELECT idProfesor FROM " . $this->table_name . " WHERE Correo = :email LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 1;
     }
     
     // Crear nuevo profesor con manejo de foto
