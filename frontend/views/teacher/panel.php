@@ -2,7 +2,7 @@
 
 <div class="teacher-container">
     <!-- Datos del profesor -->
-    <div class="profile-card">
+    <div class="profile-card" id="datos">
         <h1 class="title">Mis datos personales</h1>
 
         <div class="info-block">
@@ -46,7 +46,61 @@
             </p>
         </div>
 
-        <a href="editar-datos" class="btn2">✏️ Editar mis datos</a>
+        <a onclick="editar()" class="btn2">✏️ Editar mis datos</a>
+    </div>
+
+    <div class="profile-card" style="display: none;" id="nuevos-datos">
+        <form action="panel" method="POST">
+            <h1 class="title">Mis datos personales</h1>
+
+            <div class="info-block">
+
+                <p><span class="Caracteristicas">ID Profesor:</span> <span class="variable"> <?php print($teacherData['IdProfesor']); ?> </span></p>
+
+                <p><span class="Caracteristicas">Correo: </span><input type="text" name="correo" class="variable form-control" value="<?php print($teacherData['Correo']); ?>"></p>
+
+                <p>
+                    <span class="Caracteristicas">Nombre:</span>
+                    <input type="text" name="nombre" class="variable form-control" value="<?php print($teacherData['Nombre']); ?>" placeholder="Nombre(s)">
+                    <input type="text" name="apPaterno" class="variable form-control" value="<?php print($teacherData['ApPaterno']); ?>" placeholder="Apellido paterno">
+                    <input type="text" name="apMaterno" class="variable form-control" value="<?php print($teacherData['ApMaterno']); ?>" placeholder="Apellido materno">
+                </p>
+
+                <p><span class="Caracteristicas">Especialidad:</span><input type="text" name="especialidad" class="variable form-control" value="<?php print($teacherData['Especialidad']); ?>"></p>
+
+                <p><span class="Caracteristicas">Celular:</span><input type="tel" name="celular" class="variable form-control" value="<?php print($teacherData['Celular']); ?>"></p>
+
+                <p><span class="Caracteristicas">Cédula profesional: </span><input type="text" name="cedula" class="variable form-control" value="<?php print($teacherData['CedulaP']); ?>"></p>
+
+            </div>
+            <p> </p>
+            <div class="info-block">
+                <p> </p>
+                <span class="Caracteristicas"> Descripción:</span>
+                <p><textarea name="descripcion" class="form-control"><?php print(nl2br(htmlspecialchars($teacherData['Descripcion']))); ?></textarea></p>
+            </div>
+
+            <div class="info-block">
+                <span class="Caracteristicas">Rango de precio:</span>
+                <p>$<input type="number" name="precioMin" class="normal form-control" value="<?php print($teacherData['PrecioMin']) ?>">-$<input type="number" name="precioMax" class="normal form-control" value="<?php print($teacherData['PrecioMax']) ?>"></p>
+            </div>
+
+            <div class="info-block">
+                <span class="Caracteristicas">Dirección</span>
+                <p>
+                    <input type="text" name="estado" class="normal form-control" value="<?php print($teacherData['Estado']); ?>" placeholder="Estado">
+                    <input type="text" name="delegacion" class="normal form-control" value="<?php print($teacherData['Delegacion']); ?>" placeholder="Delegación">
+                    <input type="text" name="cp" class="normal form-control" value="<?php print($teacherData['CP']); ?>" placeholder="Código postal">
+                    <input type="text" name="colonia" class="normal form-control" value="<?php print($teacherData['Colonia']); ?>" placeholder="Colonia">
+                    <input type="text" name="calle" class="normal form-control" value="<?php print($teacherData['Calle']); ?>" placeholder="Calle">
+                    <input type="text" name="noExt" class="normal form-control" value="<?php print($teacherData['NoExt']); ?>" placeholder="Numero exterior">
+                    <input type="text" name="noInt" class="normal form-control" value="<?php (!empty($teacherData['NoInt']))? print($teacherData['NoInt']) : ""; ?>" placeholder="Numero interior">
+                </p>
+            </div>
+
+            <a onclick="editar()" class="btn2-alt">✏️ Cancelar cambios</a>
+            <button type="submit" class="btn btn-primary btn-lg">Guardar cambios</button>
+        </form>
     </div>
 
     <hr class="divider">
@@ -88,6 +142,19 @@
     </div>
 </div>
 
+<script>
+    function editar() {
+        datos = document.getElementById("datos")
+        nuevosDatos = document.getElementById("nuevos-datos")
+        if(nuevosDatos.style.display == 'none') {
+            datos.style.display = 'none'
+            nuevosDatos.style.display = 'block'
+        } else {
+            datos.style.display = 'block'
+            nuevosDatos.style.display = 'none'
+        }
+    }
+</script>
 
 <style>
 /* Fondo general */
@@ -139,6 +206,10 @@ body {
     margin-bottom: 15px;
 }
 
+label {
+    display: block;
+}
+
 /* Botones */
 .btn2 {
     display: inline-block;
@@ -154,6 +225,37 @@ body {
 .btn2:hover {
     background: #7a5bb3;
 }
+
+.btn2-alt {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #555;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: 15px;
+    text-align: center;
+}
+.btn2-alt:hover {
+    background: #333;
+}
+
+.btn-primary {
+    font-family: "Jersey 20", sans-serif; 
+    background-color: #9e78d4;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 20px;
+    font-size: 22px;
+    font-weight: normal;
+    color: #fff;
+    margin-top: 15px;
+  }
+  .btn-primary:hover {
+    background-color: #7b5bb0;
+  }
 
 .divider {
     border: 2px solid #151522;
@@ -200,6 +302,27 @@ body {
     font-size: 20px;
     color: #555;
 }
+
+  /*Contenedores*/
+  .form-control,
+  .form-select,
+  textarea {
+    font-family: "Jersey 20", sans-serif; 
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    padding: 10px;
+  }
+
+  textarea {
+    font-size: 20px;
+    width: 98%;
+  }
+
+  /*Fonts*/
+  .normal {
+    font-size: 20px;
+  }
+
 </style>
 
 <?php require_once '../frontend/templates/footer.php'; ?>

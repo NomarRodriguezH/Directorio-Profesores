@@ -122,7 +122,7 @@
     <?php endif; ?>
 
     <form method="POST" action="login">
-        <input type="text" id="cedula" name="cedula" placeholder="Cédula Profesional"
+        <input type="text" id="cedula" name="cedula" placeholder="Correo"
                value="<?php echo isset($_POST['cedula']) ? htmlspecialchars($_POST['cedula']) : ''; ?>" required>
 
         <input type="password" id="password" name="password" placeholder="Contraseña" required>
