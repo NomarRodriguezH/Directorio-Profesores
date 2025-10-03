@@ -1,6 +1,106 @@
 <?php require_once '../frontend/templates/header.php'; ?>
 
-<div class="container mt-4">
+<style>
+    /* Fondo Gengar */
+        body {
+      margin: 0;
+      font-family: 'Jersey 20', Bodoni MT, Arial, sans-serif;
+      background-image: url("https://wallpapersok.com/images/hd/a-gengar-in-an-eerie-patterned-forest-of-purple-pokemons-c8bazu8jid3fpccm-3.jpg");
+      background-size: cover;      
+      background-position: center; 
+      background-repeat: repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Contenedor principal */
+    .main-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        max-width: 1200px;
+        margin: 30px auto;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-align: center;
+        height: 540px;
+    }
+
+    /* Encabezados */
+    h1 {
+
+        color: #9e78d4;
+        font-weight: bold;
+        font-size: 35px ;
+    } 
+
+
+
+    h4, h6 {
+        color: #9e78d4;
+        font-weight: bold;
+        font-size: 20px ;
+    }
+
+    hr {
+        border-top: 2px solid #9e78d4;
+        margin: 20px 0;
+    }
+
+    /* Botones */
+    .btn-custom {
+    font-family: 'Jersey 20', Bodoni MT, Arial, sans-serif;
+    background-color: #9e78d4;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    }
+    .btn-custom:hover {
+        background-color: #7a57b1;
+    }
+
+    /* Tarjetas */
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+    .card-header {
+        background-color: #9e78d4;
+        font-size: 30px;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* Tabla */
+    .table th {
+        background-color: #9e78d4;
+        color: white;
+        text-align: center;
+    }
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* Mensajes de alerta */
+    .alert {
+        font-weight: bold;
+    }
+
+    /* Breadcrumb centrado */
+    .breadcrumb {
+        justify-content: center;
+    }
+</style>
+
+<div class="main-container">
     <!-- Mensajes -->
     <?php if (isset($_SESSION['success_message'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -21,19 +121,19 @@
     <!-- Navegación -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-            <li class="breadcrumb-item active">Archivos</li>
+            <a href="../panel.php" class="btn-custom">Regresar al dashboard</a></li>
+            
         </ol>
     </nav>
+
+    <h1 class="mb-4">📂 Mis Archivos</h1>
 
     <div class="row">
         <!-- Sidebar -->
         <div class="col-md-3">
             <!-- Filtros por Clase -->
             <div class="card mb-4">
-                <div class="card-header">
-                    <h6 class="mb-0">Filtrar por Clase</h6>
-                </div>
+                <div class="card-header">Filtrar por Clase</div>
                 <div class="card-body">
                     <div class="list-group">
                         <a href="archivos.php" 
@@ -52,9 +152,7 @@
 
             <!-- Filtros por Tipo -->
             <div class="card">
-                <div class="card-header">
-                    <h6 class="mb-0">Filtrar por Tipo</h6>
-                </div>
+                <div class="card-header">Filtrar por Tipo</div>
                 <div class="card-body">
                     <div class="list-group">
                         <a href="archivos.php<?php echo isset($class) ? '?clase_id=' . $class['IdClase'] : ''; ?>" 
@@ -63,19 +161,19 @@
                         </a>
                         <a href="archivos.php?<?php echo isset($class) ? 'clase_id=' . $class['IdClase'] . '&' : ''; ?>tipo=pdf" 
                            class="list-group-item list-group-item-action <?php echo isset($_GET['tipo']) && $_GET['tipo'] === 'pdf' ? 'active' : ''; ?>">
-                            <i class="bi bi-file-pdf text-danger"></i> Documentos PDF
+                            📕 Documentos PDF
                         </a>
                         <a href="archivos.php?<?php echo isset($class) ? 'clase_id=' . $class['IdClase'] . '&' : ''; ?>tipo=word" 
                            class="list-group-item list-group-item-action <?php echo isset($_GET['tipo']) && $_GET['tipo'] === 'word' ? 'active' : ''; ?>">
-                            <i class="bi bi-file-word text-primary"></i> Documentos Word
+                            📘 Documentos Word
                         </a>
                         <a href="archivos.php?<?php echo isset($class) ? 'clase_id=' . $class['IdClase'] . '&' : ''; ?>tipo=image" 
                            class="list-group-item list-group-item-action <?php echo isset($_GET['tipo']) && $_GET['tipo'] === 'image' ? 'active' : ''; ?>">
-                            <i class="bi bi-image text-success"></i> Imágenes
+                            🖼️ Imágenes
                         </a>
                         <a href="archivos.php?<?php echo isset($class) ? 'clase_id=' . $class['IdClase'] . '&' : ''; ?>tipo=zip" 
                            class="list-group-item list-group-item-action <?php echo isset($_GET['tipo']) && $_GET['tipo'] === 'zip' ? 'active' : ''; ?>">
-                            <i class="bi bi-file-zip text-warning"></i> Archivos ZIP
+                            📦 Archivos ZIP
                         </a>
                     </div>
                 </div>
@@ -84,9 +182,7 @@
             <!-- Estadísticas -->
             <?php if ($fileStats['total'] > 0): ?>
             <div class="card mt-4">
-                <div class="card-header">
-                    <h6 class="mb-0">Estadísticas</h6>
-                </div>
+                <div class="card-header">Estadísticas</div>
                 <div class="card-body">
                     <p><strong>Total archivos:</strong> <?php echo $fileStats['total']; ?></p>
                     <p><strong>Espacio usado:</strong> <?php echo formatFileSize($fileStats['total_size']); ?></p>
@@ -115,7 +211,7 @@
                 <div class="card-body">
                     <?php if (!empty($files)): ?>
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -132,16 +228,14 @@
                                     <?php foreach ($files as $file): ?>
                                         <tr>
                                             <td>
-                                                <div>
-                                                    <strong><?php echo htmlspecialchars($file['NombreArchivo']); ?></strong>
-                                                    <?php if (!empty($file['Descripcion'])): ?>
-                                                        <br><small class="text-muted"><?php echo htmlspecialchars($file['Descripcion']); ?></small>
-                                                    <?php endif; ?>
-                                                </div>
+                                                <strong><?php echo htmlspecialchars($file['NombreArchivo']); ?></strong>
+                                                <?php if (!empty($file['Descripcion'])): ?>
+                                                    <br><small class="text-muted"><?php echo htmlspecialchars($file['Descripcion']); ?></small>
+                                                <?php endif; ?>
                                             </td>
                                             <?php if (!isset($class)): ?>
                                                 <td>
-                                                    <a href="clase_detalle.php?id=<?php echo $file['IdClase_FK']; ?>" class="text-decoration-none">
+                                                    <a href="clase_detalle.php?id=<?php echo $file['IdClase_FK']; ?>" class="btn-custom btn-sm">
                                                         <?php echo htmlspecialchars($file['Materia']); ?>
                                                     </a>
                                                 </td>
@@ -166,7 +260,6 @@
                         </div>
                     <?php else: ?>
                         <div class="text-center py-5">
-                            <i class="bi bi-folder-x display-1 text-muted"></i>
                             <h4 class="text-muted mt-3">No hay archivos disponibles</h4>
                             <p class="text-muted">
                                 <?php if (isset($class)): ?>
@@ -175,11 +268,14 @@
                                     No tienes archivos en ninguna de tus clases
                                 <?php endif; ?>
                             </p>
-                            <a href="clases.php" class="btn btn-primary mt-3">Ver Mis Clases</a>
+                            <a href="clases.php" class="btn-custom">Ver Mis Clases</a>
+
                         </div>
                     <?php endif; ?>
+
                 </div>
             </div>
+
 
             <!-- Vista de Tarjetas (Alternativa) -->
             <?php if (!empty($files)): ?>
@@ -264,6 +360,9 @@
     </div>
 </div>
 
+
+
+
 <?php 
 // Función helper para formatear tamaño de archivo
 function formatFileSize($bytes) {
@@ -275,4 +374,4 @@ function formatFileSize($bytes) {
 }
 ?>
 
-<?php require_once '../frontend/templates/header.php'; ?>
+<?php require_once '../frontend/templates/footer.php'; ?>
