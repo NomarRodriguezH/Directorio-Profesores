@@ -231,7 +231,7 @@
         <?php foreach($alumnos as $alumno): ?>
             <?php if ($alumno['Estado'] == 'pendiente'): ?>
                 <form action="aceptar-estudiante?id=<?php echo $_GET['id'] ?>" method="POST" class="alumno-card">
-                    <input type="hidden" name="aluCorreo" value="<?php echo $alumno['Correo'] ?>">
+                    <input type="hidden" name="aluCorreo" value="<?php echo $alumno['id'] ?>">
                     <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
                     <h5><?php echo $alumno['FechaIngreso'] ?></h5>
                     <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
