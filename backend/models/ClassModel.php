@@ -116,7 +116,7 @@ class ClassModel {
     public function getClassEnrollments($idClase, $cedulaProfesor) {
         $query = "SELECT u.*, i.FechaIngreso, i.Estado, i.CalificacionPersonal, i.Comentario
                   FROM Inscritos i
-                  INNER JOIN Estudiantes u ON i.idEstudiante_FK = u.Correo
+                  INNER JOIN Estudiantes u ON i.idEstudiante_FK = u.id
                   WHERE i.IdClase_FK = :idClase AND i.idProfesor_FK = :cedula
                   ORDER BY i.FechaIngreso DESC";
         
@@ -124,6 +124,7 @@ class ClassModel {
         $stmt->bindParam(':idClase', $idClase, PDO::PARAM_INT);
         $stmt->bindParam(':cedula', $cedulaProfesor, PDO::PARAM_STR);
         $stmt->execute();
+        echo $stmt->rowCount();
         
         return $stmt->fetchAll();
     }

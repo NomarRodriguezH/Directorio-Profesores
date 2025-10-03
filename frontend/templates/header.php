@@ -69,7 +69,7 @@ $userType = $isLoggedIn ? $_SESSION['user_type'] : '';
         <div class="navbar-nav ms-auto">
             <?php if ($isLoggedIn): ?>
                 <span class="navbar-text me-3">Hola, <?php echo $userName; ?></span>
-                <a class="nav-link" href="profile.php">Mi Perfil</a>
+                <a class="nav-link" href="panel.php">Mi Perfil</a>
                 <?php if ($userType === 'student'): ?>
                     <a class="nav-link" href="my_classes.php">Mis Clases</a>
                 <?php endif; ?>
