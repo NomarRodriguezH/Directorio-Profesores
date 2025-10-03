@@ -209,25 +209,6 @@
             <?php endforeach; ?>
         </div>
 
-<!--Alumnos-->
-<h2>Alumnos</h2>
-<h3>Inscritos</h3>
-<?php foreach($alumnos as $alumno): ?>
-    <?php if ($alumno['Estado'] == 'activo'): ?>
-        <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
-        <h5><?php echo $alumno['FechaIngreso'] ?></h5>
-        <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
-    <?php endif; ?>
-<?php endforeach; ?>
-<h3>Pendientes</h3>
-<?php foreach($alumnos as $alumno): ?>
-    <?php if ($alumno['Estado'] == 'pendiente'): ?>
-    <form action="aceptar-estudiante?id=<?php echo $_GET['id'] ?>" method="POST">
-        <input type="hidden" name="aluCorreo" value="<?php echo $alumno['id'] ?>">
-        <h4><?php echo $alumno['id']." | ".$alumno['Correo']." | ".$alumno['Celular'] ?></h4>
-        <h5><?php echo $alumno['FechaIngreso'] ?></h5>
-        <p><?php echo $alumno['Nombre']." ".$alumno['ApPaterno']." ".$alumno['ApMaterno'] ?></p>
-        <input type="submit" value="Aceptar en la clase">
         <button type="button" id="editBtn" onclick="activarCambios()">Editar datos</button>
         <input type="submit" disabled id="saveBtn" value="Guardar cambios">
     </form>
