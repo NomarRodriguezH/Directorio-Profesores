@@ -138,4 +138,3 @@
 </body>
 </html>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Directorio-Profesores-main/frontend/templates/footer.php'; ?>

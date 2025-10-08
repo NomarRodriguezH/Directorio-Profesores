@@ -81,10 +81,10 @@
                                         Inscrito el: <?php echo date('d/m/Y', strtotime($enrollment['FechaIngreso'])); ?>
                                     </small>
                                     <div class="mt-2">
-                                        <a href="../ver-profesor.php?cedula=<?php echo $enrollment['idProfesor_FK']; ?>" 
-                                           class="btn btn-sm btn-outline-primary">Ver Profesor</a>
+                                        
+
                                         <?php if ($enrollment['Estado'] === 'activo'): ?>
-                                            <a href="clase.php?id=<?php echo $enrollment['IdClase_FK']; ?>" 
+                                            <a href="alumno/clase_detalle.php?id=<?php echo $enrollment['IdClase_FK']; ?>" 
                                                class="btn btn-sm btn-outline-success">Ir a Clase</a>
                                         <?php endif; ?>
                                     </div>
@@ -197,10 +197,8 @@
         </div>
     </div>
 </div>
-
-<!-- Estilos -->
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jersey+20&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+20&display=swap');
 
 body {
     font-family: 'Jersey 20', sans-serif;
@@ -213,7 +211,6 @@ body {
 .dashboard-container {
     max-width: 1000px;
     margin: auto;
-
 }
 
 .card {
@@ -223,12 +220,14 @@ body {
     font-size: 20px;
     margin-top: 0px;
     margin-bottom: 15px;
-
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 .card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
-
 
 .card-header {
     background-color: #684E83;
@@ -237,8 +236,7 @@ body {
     font-weight: bold;
     border-radius: 15px 15px 0 0 !important;
     text-align: center;
-
-
+    padding: 20px;
 }
 
 .welcome-card {
@@ -253,17 +251,31 @@ body {
     background: white;
     border: none;
     text-align: center;
-
+    transition: all 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-3px);
 }
 
 .list-group-item {
     border: none;
     border-bottom: 1px solid #eee;
-    padding: 15px;
-
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
 }
 .list-group-item:last-child {
     border-bottom: none;
+}
+
+.content-card .list-group-item {
+    border-left: 4px solid transparent;
+}
+.content-card .list-group-item:hover {
+    border-left-color: #684E83;
 }
 
 .btn {
@@ -271,19 +283,44 @@ body {
     background-color: #9e78d4;
     border: none;
     border-radius: 8px;
-    padding: 12px;
+    padding: 12px 20px;
     font-size: 20px;
     font-weight: normal;
     color: #fff;
     margin-right: 15px;
     margin-bottom: 15px;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
- .btn-primary:hover {
+.btn:hover {
     background-color: #7b5bb0;
-  }
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
+.badge {
+    font-family: "Jersey 20", sans-serif;
+    font-size: 16px;
+    padding: 6px 12px;
+}
+
+.list-group-item h6 {
+    color: #684E83;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.bi {
+    transition: transform 0.3s ease;
+}
+.stat-card:hover .bi {
+    transform: scale(1.1);
+}
 </style>
 
 <?php require_once __DIR__ . '/../../templates/footer.php'; ?>

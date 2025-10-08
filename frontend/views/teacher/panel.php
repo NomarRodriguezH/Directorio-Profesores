@@ -157,7 +157,8 @@
 </script>
 
 <style>
-/* Fondo general */
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+20&display=swap');
+
 body {
     background: url('https://pokewalls.wordpress.com/wp-content/uploads/2011/01/94gengar1920x1200.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -165,97 +166,153 @@ body {
     color: #222;
 }
 
-/* Contenedor principal */
 .teacher-container {
     max-width: 1200px;
     margin: 30px auto;
     padding: 20px;
 }
 
-/* Tarjeta de perfil */
 .profile-card {
     background: #fff;
-    padding: 25px;
+    padding: 30px;
     margin-bottom: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-/* Títulos */
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #9e78d4, #7a5bb3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 60px;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex: 1;
+}
+
 .title {
     text-align: center;
-    font-size: 50px;
-    margin-bottom: 20px;
+    font-size: 42px;
+    margin-bottom: 25px;
     color: #9e78d4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.info-block {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #9e78d4;
+    transition: all 0.3s ease;
+}
+.info-block:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
 }
 
 .Caracteristicas {
     color: #895F9E;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .variable {
-    color: black;
-    font-size: 25px;
+    color: #333;
+    font-size: 22px;
     font-weight: normal;
 }
 
 .info-block p {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    line-height: 1.4;
 }
 
-label {
-    display: block;
-}
-
-/* Botones */
 .btn2 {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px;
     background: #9e78d4;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 20px;
     text-decoration: none;
     margin-top: 15px;
     text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 .btn2:hover {
     background: #7a5bb3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .btn2-alt {
     display: inline-block;
-    padding: 10px 20px;
-    background: #555;
+    padding: 12px 25px;
+    background: #6c757d;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 20px;
     text-decoration: none;
     margin-top: 15px;
     text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 .btn2-alt:hover {
-    background: #333;
+    background: #545b62;
+    transform: translateY(-2px);
 }
 
 .btn-primary {
     font-family: "Jersey 20", sans-serif; 
     background-color: #9e78d4;
     border: none;
-    border-radius: 8px;
-    padding: 10px;
-    margin-left: 20px;
-    font-size: 22px;
-    font-weight: normal;
+    border-radius: 10px;
+    padding: 12px 25px;
+    margin-left: 15px;
+    font-size: 20px;
     color: #fff;
     margin-top: 15px;
-  }
-  .btn-primary:hover {
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
     background-color: #7b5bb0;
-  }
+    transform: translateY(-2px);
+}
 
 .divider {
     border: 2px solid #151522;
@@ -264,29 +321,33 @@ label {
 
 .class-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 25px;
 }
 
 .class-card {
     background: #fff;
     border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
-
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid #9e78d4;
 }
 .class-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .class-card h2 {
     color: #9e78d4;
-    font-size: 25px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
 }
 
 .class-card h3 {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 8px;
     color: #444;
 }
@@ -294,35 +355,63 @@ label {
 .class-card p {
     font-size: 16px;
     margin-bottom: 10px;
+    line-height: 1.4;
 }
 
-/* Mensaje cuando no hay clases */
 .no-classes {
     text-align: center;
     font-size: 20px;
     color: #555;
+    padding: 40px;
 }
 
-  /*Contenedores*/
-  .form-control,
-  .form-select,
-  textarea {
+.form-control,
+.form-select,
+textarea {
     font-family: "Jersey 20", sans-serif; 
     border-radius: 8px;
-    border: 2px solid #ccc;
-    padding: 10px;
-  }
+    border: 2px solid #ddd;
+    padding: 12px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+    border-color: #9e78d4;
+    box-shadow: 0 0 0 3px rgba(158, 120, 212, 0.1);
+    outline: none;
+}
 
-  textarea {
-    font-size: 20px;
+textarea {
+    font-size: 18px;
     width: 98%;
-  }
+    min-height: 100px;
+    resize: vertical;
+}
 
-  /*Fonts*/
-  .normal {
-    font-size: 20px;
-  }
+.normal {
+    font-size: 18px;
+}
 
+.form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.photo-upload {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.photo-upload input {
+    margin-top: 10px;
+}
 </style>
 
 <?php require_once '../frontend/templates/footer.php'; ?>

@@ -14,7 +14,8 @@ class StudentClassesController {
         $classModel = new ClassModel();
         $teacherModel = new TeacherModel();
         
-        $correoEstudiante = $_SESSION['user_email'];
+        $correoEstudiante = $_SESSION['user_id'];
+        echo $correoEstudiante;
         
         $enrollments = $enrollmentModel->getStudentEnrollments($correoEstudiante);
         
@@ -63,7 +64,7 @@ class StudentClassesController {
         $fileModel = new FileModel();
         
         $idClase = $_GET['id'];
-        $correoEstudiante = $_SESSION['user_email'];
+        $correoEstudiante = $_SESSION['user_id'];
         
        
         if (!$enrollmentModel->isStudentEnrolled($correoEstudiante, $idClase)) {

@@ -43,7 +43,7 @@ class TeacherModel {
     }
     
     public function getTeacherByCedula($cedula) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE Correo = :cedula AND Activo = 1 LIMIT 1";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE idProfesor = :cedula AND Activo = 1 LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':cedula', $cedula, PDO::PARAM_STR);
         $stmt->execute();
@@ -122,15 +122,15 @@ class TeacherModel {
     
     public function updateTeacher($id, $data) {
         $query = "UPDATE " . $this->table_name . " SET 
-                  Nombre = :nombre, ApPaterno = :apPaterno, ApMaterno = :apMaterno, 
-                  Especialidad = :especialidad, Celular = :celular, Correo = :correo, 
+                  Correo = :correo, Nombre = :nombre, ApPaterno = :apPaterno, ApMaterno = :apMaterno, 
+                  Especialidad = :especialidad, Celular = :celular, CedulaP = :cedula, 
                   PrecioMin = :precioMin, PrecioMax = :precioMax, Estado = :estado, 
                   Delegacion = :delegacion, CP = :cp, Colonia = :colonia, Calle = :calle, 
-                  NoExt = :noExt, NoInt = :noInt, Descripcion = :descripcion, CedulaP = :cedula
-                  WHERE IdProfesor = :id";
+                  NoExt = :noExt, NoInt = :noInt, Descripcion = :descripcion 
+                  WHERE IdProfesor = :id ";
         
         $stmt = $this->conn->prepare($query);
-        
+            
         $stmt->bindParam(':nombre', $data['nombre'], PDO::PARAM_STR);
         $stmt->bindParam(':apPaterno', $data['apPaterno'], PDO::PARAM_STR);
         $stmt->bindParam(':apMaterno', $data['apMaterno'], PDO::PARAM_STR);
@@ -147,7 +147,8 @@ class TeacherModel {
         $stmt->bindParam(':noExt', $data['noExt'], PDO::PARAM_STR);
         $stmt->bindParam(':noInt', $data['noInt'], PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
-        $stmt->bindParam(':cedula', $data['cedula'], PDO::PARAM_STR);
+       $cedula = empty($data['cedula']) ? null : $data['cedula'];
+        $stmt->bindParam(':cedula', $cedula, PDO::PARAM_NULL ?? PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         
         return $stmt->execute();

@@ -334,7 +334,7 @@ class TeacherAuthController {
         $classModel = new ClassModel();
         $teacherModel = new TeacherModel();
 
-        $teacherData = $teacherModel->getTeacherByCedula($_SESSION['teacher_email']);
+        $teacherData = $teacherModel->getTeacherByCedula($_SESSION['user_id']);
         $clases = $classModel->getClassesByTeacher($_SESSION['user_id']);
         $horarios = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
 

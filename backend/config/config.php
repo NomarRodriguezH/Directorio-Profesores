@@ -3,7 +3,7 @@ define('SITE_NAME', 'Directorio de Profesores');
 define('BASE_URL', 'http://localhost/dp/');
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'directorio_profesores'); //CAMBIAR ESTO DEPENDIENDO EL NOMBRE ASIGNADO, YA SEA EN LOCAL O EN PRODUCCIÓN
+define('DB_NAME', 'dp'); //CAMBIAR ESTO DEPENDIENDO EL NOMBRE ASIGNADO, YA SEA EN LOCAL O EN PRODUCCIÓN
 define('DB_USER', 'root');
 define('DB_PASS', '');
 

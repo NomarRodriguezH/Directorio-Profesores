@@ -209,7 +209,7 @@ padding-left: 0;
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="clase_detalle.php?id=<?php echo $clase['IdClase_FK']; ?>" class="btn btn-primary">Ver Clase</a>
-                                        <form method="POST" action="cancelar_inscripcion.php" onsubmit="return confirm('¿Estás seguro de cancelar esta inscripción?')">
+                                        <form method="POST" action="cancelar_inscripcion" onsubmit="return confirm('¿Estás seguro de cancelar esta inscripción?')">
                                             <input type="hidden" name="idClase" value="<?php echo $clase['IdClase_FK']; ?>">
                                             <button type="submit" class="btn btn-outline-danger">Cancelar</button>
                                         </form>

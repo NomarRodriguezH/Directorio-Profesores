@@ -266,6 +266,279 @@
     </div>
 </div>
 
+
+<style>
+    
+    ```css
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 12px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-item a {
+    color: #9e78d4;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #684E83, #9e78d4);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    padding: 20px 25px;
+    border: none;
+}
+
+.card-header h2,
+.card-header h5 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.badge {
+    font-size: 0.85em;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: normal;
+}
+
+.bg-primary { background: linear-gradient(135deg, #9e78d4, #7b5bb0) !important; }
+.bg-success { background: linear-gradient(135deg, #28a745, #20c997) !important; }
+.bg-secondary { background: linear-gradient(135deg, #6c757d, #495057) !important; }
+.bg-info { background: linear-gradient(135deg, #17a2b8, #6f42c1) !important; }
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    background: #f8f9fa;
+    border-bottom: 2px solid #684E83;
+    color: #495057;
+    font-weight: 600;
+    padding: 15px;
+}
+
+.table td {
+    padding: 15px;
+    vertical-align: middle;
+    border-color: #eee;
+}
+
+.table-hover tbody tr:hover {
+    background: rgba(158, 120, 212, 0.05);
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}
+
+.rounded-circle {
+    border: 4px solid #f8f9fa;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rating {
+    font-size: 1.2rem;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.star {
+    font-size: 2.5rem !important;
+    color: #ddd;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.star:hover,
+.star.active {
+    color: #ffc107;
+    transform: scale(1.2);
+}
+
+.btn {
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #9e78d4, #7b5bb0);
+    border-color: #9e78d4;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #7b5bb0, #684E83);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(158, 120, 212, 0.3);
+}
+
+.btn-outline-primary {
+    color: #9e78d4;
+    border-color: #9e78d4;
+}
+
+.btn-outline-primary:hover {
+    background: #9e78d4;
+    border-color: #9e78d4;
+    transform: translateY(-2px);
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background: #6c757d;
+    border-color: #6c757d;
+    transform: translateY(-2px);
+}
+
+.d-grid.gap-2 {
+    gap: 15px !important;
+}
+
+.alert {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    color: #721c24;
+}
+
+.btn-close {
+    padding: 12px;
+}
+
+.list-unstyled li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-unstyled li:last-child {
+    border-bottom: none;
+}
+
+.bi {
+    font-size: 1.1em;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #9e78d4;
+    box-shadow: 0 0 0 3px rgba(158, 120, 212, 0.1);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.text-center.py-4 {
+    padding: 40px 20px;
+}
+
+.bi-folder-x,
+.bi-folder {
+    font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 20px;
+    }
+    
+    .card-header {
+        padding: 15px 20px;
+    }
+    
+    .table-responsive {
+        border-radius: 10px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+    }
+    
+    .star {
+        font-size: 2rem !important;
+    }
+}
+```
+</style>
 <script>
 // Sistema de calificación con estrellas
 document.querySelectorAll('.star').forEach(star => {

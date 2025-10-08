@@ -114,7 +114,8 @@ class FileController {
     $fileModel = new FileModel();
     $classModel = new ClassModel();
     $idProfesor = $_SESSION['user_id'];
-    
+    $page_title  = "Todos mis Archivos";
+
     echo "<!-- DEBUG: user_id = " . $idProfesor . " -->\n";
     
     $idClase = isset($_GET['id']) ? $_GET['id'] : null;
